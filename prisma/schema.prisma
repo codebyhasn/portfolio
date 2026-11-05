@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Profile {
+  id                 Int     @id @default(autoincrement())
+  name               String
+  headline           String
+  subHeadline        String
+  bio                String
+  location           String
+  email              String
+  phone              String
+  linkedIn           String
+  github             String
+  avatarUrl          String?
+  showAvatar         Boolean @default(true)
+  animationsEnabled  Boolean @default(true)
+  availableForWork   Boolean @default(true)
+  resumeUrl          String  @default("/resume.pdf")
+}
+
+model Experience {
+  id           Int       @id @default(autoincrement())
+  company      String
+  role         String
+  startDate    String
+  endDate      String
+  location     String    @default("Islamabad, Pakistan")
+  description  String
+  achievements String    // JSON array of strings
+  techStack    String    // JSON array of strings
+  order        Int       @default(0)
+  visible      Boolean   @default(true)
+  createdAt    DateTime  @default(now())
+}
+
+model Project {
+  id          Int      @id @default(autoincrement())
+  title       String
+  slug        String   @unique
+  description String
+  coverImage  String   @default("")
+  tags        String   // JSON array of strings
+  liveUrl     String   @default("")
+  githubUrl   String   @default("")
+  featured    Boolean  @default(false)
+  visible     Boolean  @default(true)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+}
+
+model Skill {
+  id       Int     @id @default(autoincrement())
+  name     String
+  category String  // Frontend | Backend | DevOps | Mobile | Architecture | AI
+  level    Int     @default(90) // 0-100
+  icon     String  @default("")
+  order    Int     @default(0)
+  visible  Boolean @default(true)
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
