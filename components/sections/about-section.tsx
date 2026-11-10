@@ -115,9 +115,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
 
           {/* Right Column: Authentic Code Specification Artifact */}
           <div className="lg:col-span-7 w-full">
-            <div className="border border-zinc-300 dark:border-zinc-800/90 rounded-lg overflow-hidden bg-white dark:bg-[#0c0e14] shadow-sm">
-              <CodeEditorCard profile={profile} />
-            </div>
+            <CodeEditorCard profile={profile} />
           </div>
         </div>
       </div>

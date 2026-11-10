@@ -111,18 +111,18 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
       transition={{ duration: 0.45, ease: "easeOut" }}
       className={`fixed top-0 z-50 w-full transition-all duration-200 ${
         isScrolled
-          ? "border-b border-zinc-200/90 dark:border-zinc-800/80 bg-white/95 dark:bg-[#0d0e12]/95 backdrop-blur-md"
-          : "bg-white/80 dark:bg-[#0d0e12]/80 backdrop-blur-xs border-b border-zinc-200/50 dark:border-zinc-800/40"
+          ? "border-b border-[#111111]/12 dark:border-zinc-800/80 bg-[#f3eee3]/95 dark:bg-[#0e0f12]/95 backdrop-blur-md"
+          : "bg-[#f3eee3]/85 dark:bg-[#0e0f12]/85 backdrop-blur-xs border-b border-[#111111]/8 dark:border-zinc-800/40"
       }`}
     >
       {/* Top Editorial Ticker Strip */}
-      <div className="hidden sm:flex h-7 items-center justify-between border-b border-zinc-200/60 dark:border-zinc-800/60 px-4 sm:px-6 lg:px-8 text-[11px] font-mono text-zinc-500 dark:text-zinc-400 select-none bg-zinc-50/60 dark:bg-[#0a0b0e]/60">
+      <div className="hidden sm:flex h-7 items-center justify-between border-b border-[#111111]/10 dark:border-zinc-800/60 px-4 sm:px-6 lg:px-8 text-[11px] font-mono text-[#555555] dark:text-zinc-400 select-none bg-[#ebe5d8]/70 dark:bg-[#0a0b0e]/70">
         <div className="flex items-center gap-3">
           <span className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="font-semibold text-zinc-700 dark:text-zinc-300">ISLAMABAD, PK</span>
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-600 dark:bg-emerald-400 animate-pulse" />
+            <span className="font-semibold text-[#111111] dark:text-zinc-300">ISLAMABAD, PK</span>
           </span>
-          <span className="text-zinc-300 dark:text-zinc-700">/</span>
+          <span className="text-[#111111]/20 dark:text-zinc-700">/</span>
           <span>{localTime ? `${localTime} PKT` : "UTC+5"}</span>
         </div>
         <div className="flex items-center gap-4">
@@ -130,24 +130,24 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
             <div className="hidden lg:flex items-center gap-2 text-[10px]">
               <a
                 href={`tel:${cleanPhoneForTel(profile.phone)}`}
-                className="flex items-center gap-1 text-zinc-600 dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+                className="flex items-center gap-1 text-[#555555] dark:text-zinc-400 hover:text-[#D9541E] dark:hover:text-[#E05D27] transition-colors"
                 title={`Call ${profile.phone}`}
               >
-                <Phone className="h-3 w-3 text-amber-500" />
+                <Phone className="h-3 w-3 text-[#D9541E]" />
                 <span>{profile.phone}</span>
               </a>
-              <span className="text-zinc-300 dark:text-zinc-700">|</span>
+              <span className="text-[#111111]/20 dark:text-zinc-700">|</span>
               <a
                 href={getWhatsAppUrl(profile.phone)}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-zinc-600 dark:text-zinc-400 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+                className="flex items-center gap-1 text-[#555555] dark:text-zinc-400 hover:text-[#D9541E] dark:hover:text-[#E05D27] transition-colors"
                 title="Direct WhatsApp Message"
               >
                 <WhatsAppIcon className="h-3 w-3" />
                 <span>WhatsApp</span>
               </a>
-              <span className="text-zinc-300 dark:text-zinc-700">/</span>
+              <span className="text-[#111111]/20 dark:text-zinc-700">/</span>
             </div>
           )}
           <span className="hidden md:inline">
@@ -155,15 +155,15 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
             <span
               className={
                 profile?.availableForWork !== false
-                  ? "text-emerald-600 dark:text-emerald-400 font-medium"
-                  : "text-amber-600 dark:text-amber-400 font-medium"
+                  ? "text-emerald-700 dark:text-emerald-400 font-medium"
+                  : "text-[#D9541E] dark:text-[#E05D27] font-medium"
               }
             >
               ONLINE • {profile?.availableForWork !== false ? "AVAILABLE FOR WORK" : "COMMITTED • ADVISORY ONLY"}
             </span>
           </span>
-          <span className="text-zinc-300 dark:text-zinc-700 hidden md:inline">/</span>
-          <span className="text-zinc-600 dark:text-zinc-300">SENIOR FRONTEND &amp; FULL-STACK</span>
+          <span className="text-[#111111]/20 dark:text-zinc-700 hidden md:inline">/</span>
+          <span className="text-[#111111] dark:text-zinc-300 font-medium">SENIOR FRONTEND &amp; FULL-STACK</span>
         </div>
       </div>
 
@@ -175,7 +175,7 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
           onClick={(e) => handleNavClick(e, "#architecture")}
           className="flex items-center gap-3 group cursor-pointer"
         >
-          <div className="relative h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0 transition-transform duration-200 group-hover:scale-105 rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/80 p-1">
+          <div className="relative h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0 transition-transform duration-200 group-hover:scale-105 flex items-center justify-center">
             <Image
               src="/brand-logo.png?v=3"
               alt="codebyhasn"
@@ -187,10 +187,10 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
             />
           </div>
           <div className="flex flex-col">
-            <span className="font-mono text-xs font-bold tracking-wider uppercase text-zinc-900 dark:text-zinc-100">
+            <span className="font-mono text-xs font-bold tracking-wider uppercase text-[#111111] dark:text-zinc-100">
               Muhammad Hassan
             </span>
-            <span className="text-[10px] font-mono text-zinc-500 tracking-tight">
+            <span className="text-[10px] font-mono text-[#555555] dark:text-zinc-400 tracking-tight">
               Interface Architect
             </span>
           </div>
@@ -207,15 +207,15 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
                 onClick={(e) => handleNavClick(e, item.href)}
                 className={`group flex items-center gap-1.5 py-1 transition-colors cursor-pointer ${
                   isActive
-                    ? "text-zinc-950 dark:text-zinc-100 font-semibold"
-                    : "text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100"
+                    ? "text-[#111111] dark:text-zinc-100 font-bold"
+                    : "text-[#555555] dark:text-zinc-400 hover:text-[#111111] dark:hover:text-zinc-100"
                 }`}
               >
                 <span
                   className={`text-[10px] transition-colors ${
                     isActive
-                      ? "text-amber-600 dark:text-amber-400 font-bold"
-                      : "text-amber-600/70 dark:text-amber-500/60 group-hover:text-amber-600 dark:group-hover:text-amber-400"
+                      ? "text-[#D9541E] dark:text-[#E05D27] font-bold"
+                      : "text-[#D9541E]/70 dark:text-[#E05D27]/60 group-hover:text-[#D9541E] dark:group-hover:text-[#E05D27]"
                   }`}
                 >
                   {item.index}
@@ -233,7 +233,7 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
           <a
             href="#dispatch"
             onClick={(e) => handleNavClick(e, "#dispatch")}
-            className="hidden sm:inline-flex items-center gap-1.5 rounded-md border border-zinc-900 dark:border-zinc-100 bg-zinc-900 dark:bg-zinc-100 px-3 py-1.5 text-xs font-mono font-medium text-zinc-50 dark:text-zinc-900 hover:bg-zinc-800 dark:hover:bg-white transition-all shadow-2xs cursor-pointer"
+            className="hidden sm:inline-flex items-center gap-1.5 rounded-md bg-[#D9541E] hover:bg-[#bf4615] text-white px-3 py-1.5 text-xs font-mono font-medium transition-all shadow-xs cursor-pointer"
           >
             <span>Dispatch</span>
             <ArrowUpRight className="h-3.5 w-3.5" />
@@ -242,7 +242,7 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
           {/* Mobile menu trigger */}
           <button
             onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="md:hidden flex h-8 w-8 items-center justify-center rounded-md border border-zinc-300 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900 text-zinc-700 dark:text-zinc-300"
+            className="md:hidden flex h-8 w-8 items-center justify-center rounded-md border border-[#111111]/15 dark:border-zinc-800 bg-[#ebe5d8] dark:bg-zinc-900 text-[#111111] dark:text-zinc-300"
             aria-label="Toggle Navigation"
           >
             {isMobileOpen ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
@@ -258,7 +258,7 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-b border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0d0e12] px-4 py-4 md:hidden font-mono"
+            className="border-b border-[#111111]/12 dark:border-zinc-800 bg-[#f3eee3] dark:bg-[#0e0f12] px-4 py-4 md:hidden font-mono"
           >
             <div className="flex flex-col space-y-3">
               {navItems.map((item) => {
@@ -268,18 +268,18 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
                     key={item.href}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`flex items-center justify-between py-2 text-xs border-b border-zinc-100 dark:border-zinc-800/50 cursor-pointer ${
+                    className={`flex items-center justify-between py-2 text-xs border-b border-[#111111]/8 dark:border-zinc-800/50 cursor-pointer ${
                       isActive
-                        ? "text-zinc-950 dark:text-zinc-100 font-bold"
-                        : "text-zinc-700 dark:text-zinc-300"
+                        ? "text-[#111111] dark:text-zinc-100 font-bold"
+                        : "text-[#555555] dark:text-zinc-300"
                     }`}
                   >
                     <span>{item.label}</span>
                     <span
                       className={`text-[10px] ${
                         isActive
-                          ? "text-amber-600 dark:text-amber-400 font-bold"
-                          : "text-amber-600 dark:text-amber-500"
+                          ? "text-[#D9541E] dark:text-[#E05D27] font-bold"
+                          : "text-[#D9541E] dark:text-[#E05D27]"
                       }`}
                     >
                       {item.index}
@@ -288,20 +288,20 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
                 );
               })}
               {profile?.phone && (
-                <div className="pt-2 flex items-center justify-between border-t border-zinc-100 dark:border-zinc-800/60 text-xs">
+                <div className="pt-2 flex items-center justify-between border-t border-[#111111]/10 dark:border-zinc-800/60 text-xs">
                   <a
                     href={`tel:${cleanPhoneForTel(profile.phone)}`}
-                    className="flex items-center gap-1.5 text-zinc-700 dark:text-zinc-300 hover:text-amber-600 dark:hover:text-amber-400"
+                    className="flex items-center gap-1.5 text-[#555555] dark:text-zinc-300 hover:text-[#D9541E] dark:hover:text-[#E05D27]"
                     title={`Call ${profile.phone}`}
                   >
-                    <Phone className="h-3.5 w-3.5 text-amber-500" />
+                    <Phone className="h-3.5 w-3.5 text-[#D9541E]" />
                     <span>{profile.phone}</span>
                   </a>
                   <a
                     href={getWhatsAppUrl(profile.phone)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 px-2.5 py-1 rounded border border-zinc-200 dark:border-zinc-700/80 transition-colors font-medium"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#111111] dark:text-zinc-300 bg-[#ebe5d8] dark:bg-zinc-800/80 hover:bg-[#ded7c8] dark:hover:bg-zinc-700 px-2.5 py-1 rounded border border-[#111111]/12 dark:border-zinc-700/80 transition-colors font-medium"
                     title="Direct WhatsApp Message"
                   >
                     <WhatsAppIcon className="h-3 w-3" />
@@ -313,7 +313,7 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
                 <a
                   href="#dispatch"
                   onClick={(e) => handleNavClick(e, "#dispatch")}
-                  className="w-full flex items-center justify-center gap-2 rounded-md bg-zinc-900 dark:bg-zinc-100 py-2 text-xs font-mono text-zinc-50 dark:text-zinc-900 cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 rounded-md bg-[#D9541E] hover:bg-[#bf4615] text-white py-2 text-xs font-mono font-medium cursor-pointer"
                 >
                   <span>Initiate Contact</span>
                   <ArrowUpRight className="h-3.5 w-3.5" />

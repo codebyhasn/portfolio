@@ -62,12 +62,12 @@ export function HeroSection({ profile }: HeroSectionProps) {
           <div className="lg:col-span-7 flex flex-col space-y-7">
             {/* Live Availability Pill */}
             <div>
-              <span className="inline-flex items-center gap-2 rounded-full border border-zinc-300 dark:border-zinc-700/80 bg-zinc-100/80 dark:bg-zinc-900/80 px-3 py-1 text-xs font-mono text-zinc-800 dark:text-zinc-200">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#111111]/15 dark:border-white/15 bg-[#ebe5d8]/90 dark:bg-[#1a1d24] px-3.5 py-1 text-xs font-mono text-[#111111] dark:text-zinc-200 shadow-2xs">
                 <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-600 dark:bg-emerald-400" />
                 </span>
-                <span>
+                <span className="tracking-wide font-medium">
                   {profile.availableForWork
                     ? "AVAILABLE FOR FULL-TIME & SELECT CONTRACTS"
                     : "CURRENTLY COMMITTED • OPEN TO DISCUSSIONS"}
@@ -77,41 +77,41 @@ export function HeroSection({ profile }: HeroSectionProps) {
 
             {/* Editorial Headline */}
             <div className="space-y-2">
-              <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-zinc-950 dark:text-zinc-50">
+              <h1 className="font-serif text-5xl sm:text-7xl lg:text-8xl tracking-tight leading-[0.95] text-[#111111] dark:text-zinc-50">
                 Muhammad <br />
-                <span className="italic font-light text-zinc-800 dark:text-zinc-200">
+                <span className="italic font-light text-[#222222] dark:text-zinc-200">
                   Hassan.
                 </span>
               </h1>
-              <p className="font-mono text-xs sm:text-sm uppercase tracking-widest text-amber-600 dark:text-amber-500 pt-2">
+              <p className="font-mono text-xs sm:text-sm uppercase tracking-widest text-[#D9541E] dark:text-[#E05D27] pt-2 font-medium">
                 {profile.headline || "Senior Frontend & Full-Stack Interface Architect"}
               </p>
             </div>
 
             {/* Directive Paragraph */}
-            <p className="text-base sm:text-lg text-zinc-600 dark:text-zinc-300 leading-relaxed max-w-2xl font-sans">
+            <p className="text-base sm:text-lg text-[#555555] dark:text-zinc-300 leading-relaxed max-w-2xl font-sans">
               {profile.bio ||
                 "Specialized in the nexus between heavy enterprise infrastructure and surgical UI velocity. 6+ years engineering mission-critical banking portals, resilient state architectures, and robust Laravel microservices."}
             </p>
 
             {/* Structured Engineering Spec Sheet */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-y border-zinc-200/80 dark:border-zinc-800/80 py-5 font-mono text-xs">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 border-y border-[#111111]/12 dark:border-white/10 py-5 font-mono text-xs">
               <div>
-                <p className="text-[10px] uppercase text-zinc-400 tracking-wider">Coordinates</p>
-                <p className="font-medium text-zinc-800 dark:text-zinc-200 mt-1 flex items-center gap-1">
-                  <MapPin className="h-3 w-3 text-amber-500" />
+                <p className="text-[10px] uppercase text-[#555555]/80 dark:text-zinc-400 tracking-wider">Coordinates</p>
+                <p className="font-medium text-[#111111] dark:text-zinc-200 mt-1 flex items-center gap-1">
+                  <MapPin className="h-3 w-3 text-[#D9541E]" />
                   {profile.location || "Islamabad, PK"}
                 </p>
               </div>
               <div>
-                <p className="text-[10px] uppercase text-zinc-400 tracking-wider">Experience</p>
-                <p className="font-medium text-zinc-800 dark:text-zinc-200 mt-1">
+                <p className="text-[10px] uppercase text-[#555555]/80 dark:text-zinc-400 tracking-wider">Experience</p>
+                <p className="font-medium text-[#111111] dark:text-zinc-200 mt-1">
                   6+ Years Production
                 </p>
               </div>
               <div>
-                <p className="text-[10px] uppercase text-zinc-400 tracking-wider">Core Stack</p>
-                <p className="font-medium text-zinc-800 dark:text-zinc-200 mt-1">
+                <p className="text-[10px] uppercase text-[#555555]/80 dark:text-zinc-400 tracking-wider">Core Stack</p>
+                <p className="font-medium text-[#111111] dark:text-zinc-200 mt-1">
                   React · Next.js · Laravel
                 </p>
               </div>
@@ -121,7 +121,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
             <div className="flex flex-wrap items-center gap-3 pt-2">
               <a
                 href="#dispatch"
-                className="inline-flex items-center gap-2 rounded-md bg-zinc-950 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 px-5 py-3 text-xs font-mono font-semibold tracking-wide hover:bg-zinc-800 dark:hover:bg-white transition-all shadow-xs cursor-pointer"
+                className="inline-flex items-center gap-2 rounded-md bg-[#D9541E] hover:bg-[#bf4615] text-white px-5 py-3 text-xs font-mono font-semibold tracking-wide transition-all shadow-xs cursor-pointer"
               >
                 <span>INITIATE CONTACT</span>
                 <ArrowUpRight className="h-4 w-4" />
@@ -130,9 +130,9 @@ export function HeroSection({ profile }: HeroSectionProps) {
               <button
                 type="button"
                 onClick={() => setIsResumeOpen(true)}
-                className="inline-flex items-center gap-2 rounded-md border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900/60 text-zinc-800 dark:text-zinc-200 px-5 py-3 text-xs font-mono font-medium hover:border-zinc-500 hover:text-zinc-950 dark:hover:text-white transition-all cursor-pointer shadow-2xs"
+                className="inline-flex items-center gap-2 rounded-md border border-[#111111]/15 dark:border-white/15 bg-white dark:bg-[#14161c] text-[#111111] dark:text-zinc-200 px-5 py-3 text-xs font-mono font-medium hover:border-[#D9541E] hover:text-[#D9541E] dark:hover:text-white transition-all cursor-pointer shadow-2xs"
               >
-                <Eye className="h-3.5 w-3.5 text-amber-500" />
+                <Eye className="h-3.5 w-3.5 text-[#D9541E]" />
                 <span>VERIFIED DOSSIER [PDF]</span>
               </button>
 
@@ -144,9 +144,9 @@ export function HeroSection({ profile }: HeroSectionProps) {
                       href={`tel:${cleanPhoneForTel(profile.phone)}`}
                       aria-label={`Call ${profile.phone}`}
                       title={`Direct Call: ${profile.phone}`}
-                      className="flex h-9 w-9 items-center justify-center rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
+                      className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#111111] dark:hover:text-zinc-100 hover:border-[#D9541E] transition-colors"
                     >
-                      <Phone className="h-4 w-4 text-amber-500" />
+                      <Phone className="h-4 w-4 text-[#D9541E]" />
                     </a>
                     <a
                       href={getWhatsAppUrl(profile.phone)}
@@ -154,7 +154,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
                       rel="noopener noreferrer"
                       aria-label="Direct WhatsApp Message"
                       title="Direct WhatsApp Message"
-                      className="flex h-9 w-9 items-center justify-center rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-600 transition-colors"
+                      className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#111111] dark:hover:text-zinc-100 hover:border-[#D9541E] transition-colors"
                     >
                       <WhatsAppIcon className="h-4 w-4" />
                     </a>
@@ -166,7 +166,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub Profile"
-                    className="flex h-9 w-9 items-center justify-center rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
+                    className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#111111] dark:hover:text-zinc-100 transition-colors"
                   >
                     <GithubIcon className="h-4 w-4" />
                   </a>
@@ -177,7 +177,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn Profile"
-                    className="flex h-9 w-9 items-center justify-center rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
+                    className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#111111] dark:hover:text-zinc-100 transition-colors"
                   >
                     <LinkedinIcon className="h-4 w-4" />
                   </a>

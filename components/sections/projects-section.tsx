@@ -120,19 +120,35 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 
           {/* Filter Bar styled like an architectural punch card */}
           <div className="flex flex-wrap gap-1.5 font-mono text-xs">
-            {allTags.slice(0, 6).map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setActiveFilter(tag)}
-                className={`px-3 py-1 rounded border text-[11px] transition-all cursor-pointer ${
-                  activeFilter === tag
-                    ? "border-zinc-900 bg-zinc-900 text-zinc-50 dark:border-zinc-100 dark:bg-zinc-100 dark:text-zinc-950 font-bold"
-                    : "border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 hover:border-zinc-400 dark:hover:border-zinc-600"
-                }`}
-              >
-                {tag === ALL_FILTER ? "ALL [INDEX]" : tag}
-              </button>
-            ))}
+            {allTags.slice(0, 6).map((tag) => {
+              const isActive = activeFilter === tag;
+              return (
+                <button
+                  key={tag}
+                  onClick={() => setActiveFilter(tag)}
+                  className={`relative px-3 py-1 rounded border text-[11px] transition-colors cursor-pointer select-none ${
+                    isActive
+                      ? "border-[#D9541E] text-white font-bold"
+                      : "border-[#111111]/12 dark:border-zinc-800 bg-white dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:border-[#111111]/30 dark:hover:border-zinc-600 hover:text-[#111111] dark:hover:text-zinc-100"
+                  }`}
+                >
+                  <span className="relative z-10">
+                    {tag === ALL_FILTER ? "ALL [INDEX]" : tag}
+                  </span>
+                  {isActive && (
+                    animationsEnabled ? (
+                      <motion.span
+                        layoutId="activeFilterPill"
+                        className="absolute inset-0 rounded bg-[#D9541E] shadow-xs"
+                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                      />
+                    ) : (
+                      <span className="absolute inset-0 rounded bg-[#D9541E] shadow-xs" />
+                    )
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -272,7 +288,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                         </div>
 
                         {/* Viewport Canvas */}
-                        <div className="relative aspect-[16/10] w-full bg-zinc-950 flex flex-col justify-center items-center overflow-hidden p-6 text-center">
+                        <div className="relative aspect-[16/10] w-full bg-[#faf8f4] dark:bg-zinc-950 flex flex-col justify-center items-center overflow-hidden p-6 text-center">
                           {project.coverImage ? (
                             <Image
                               src={project.coverImage}
@@ -282,14 +298,14 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
                             />
                           ) : (
                             <div className="space-y-3 font-mono">
-                              <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-zinc-800 bg-zinc-900 text-amber-400">
+                              <div className="inline-flex h-12 w-12 items-center justify-center rounded-lg border border-[#111111]/12 dark:border-zinc-800 bg-[#ebe5d8] dark:bg-zinc-900 text-[#D9541E] dark:text-amber-400">
                                 <Activity className="h-6 w-6" />
                               </div>
                               <div>
-                                <p className="text-white text-xs font-semibold">{project.title}</p>
-                                <p className="text-zinc-500 text-[11px] mt-0.5">Architecture Mockup • Verified</p>
+                                <p className="text-[#111111] dark:text-white text-xs font-semibold">{project.title}</p>
+                                <p className="text-[#555555] dark:text-zinc-500 text-[11px] mt-0.5">Architecture Mockup • Verified</p>
                               </div>
-                              <span className="inline-block text-[10px] text-zinc-400 bg-zinc-900 border border-zinc-800 px-2 py-0.5 rounded">
+                              <span className="inline-block text-[10px] text-[#555555] dark:text-zinc-400 bg-white dark:bg-zinc-900 border border-[#111111]/12 dark:border-zinc-800 px-2 py-0.5 rounded">
                                 P99 Latency: 280ms
                               </span>
                             </div>

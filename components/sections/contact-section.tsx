@@ -216,7 +216,7 @@ export function ContactSection({ profile }: ContactSectionProps) {
                   <button
                     type="submit"
                     disabled={status === "loading"}
-                    className="w-full flex items-center justify-center gap-2 rounded bg-zinc-950 dark:bg-zinc-100 text-zinc-50 dark:text-zinc-950 py-3 font-mono font-bold tracking-wider hover:bg-zinc-800 dark:hover:bg-white transition-all disabled:opacity-50 cursor-pointer text-xs"
+                    className="w-full flex items-center justify-center gap-2 rounded bg-[#D9541E] hover:bg-[#bf4615] text-white py-3 font-mono font-bold tracking-wider transition-all disabled:opacity-50 cursor-pointer text-xs shadow-xs"
                   >
                     {status === "loading" ? (
                       <>

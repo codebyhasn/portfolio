@@ -114,11 +114,11 @@ export default function RootLayout({
             toastOptions={{
               classNames: {
                 toast:
-                  "bg-zinc-900 border border-zinc-800 text-zinc-100 shadow-xl",
-                title: "text-zinc-100 font-medium",
-                description: "text-zinc-400",
-                actionButton: "bg-violet-600 text-white",
-                cancelButton: "bg-zinc-800 text-zinc-400",
+                  "bg-white dark:bg-[#14161c] border border-[#111111]/12 dark:border-white/10 text-[#111111] dark:text-zinc-100 shadow-md font-mono text-xs",
+                title: "text-[#111111] dark:text-zinc-100 font-semibold",
+                description: "text-[#555555] dark:text-zinc-400",
+                actionButton: "bg-[#D9541E] hover:bg-[#bf4615] text-white",
+                cancelButton: "bg-[#ebe5d8] text-[#555555] dark:bg-zinc-800 dark:text-zinc-400",
               },
             }}
           />

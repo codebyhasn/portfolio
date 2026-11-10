@@ -10,7 +10,7 @@ export default async function AdminLoginPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-zinc-50 dark:bg-zinc-950 flex items-center justify-center px-4 transition-colors">
+    <div className="relative min-h-screen bg-[#f3eee3] dark:bg-[#0e0f12] flex items-center justify-center px-4 transition-colors">
       <div className="absolute top-6 right-6">
         <ThemeToggle />
       </div>
