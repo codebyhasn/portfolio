@@ -203,7 +203,7 @@ export function Navbar({
         >
           <div className="relative h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0 transition-transform duration-200 group-hover:scale-105 flex items-center justify-center">
             <Image
-              src="/brand-logo.png?v=3"
+              src="/brand-logo.png?v=4"
               alt="codebyhasn"
               width={72}
               height={72}

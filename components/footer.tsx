@@ -26,7 +26,7 @@ export function Footer({ profile }: FooterProps) {
             <div className="flex items-center gap-2.5">
               <div className="relative h-8 w-8 flex-shrink-0 flex items-center justify-center">
                 <Image
-                  src="/brand-logo.png?v=3"
+                  src="/brand-logo.png?v=4"
                   alt="codebyhasn"
                   width={64}
                   height={64}
@@ -90,7 +90,7 @@ export function Footer({ profile }: FooterProps) {
                 <>
                   <a
                     href={`tel:${cleanPhoneForTel(profile.phone)}`}
-                    className="p-1.5 rounded border border-[#111111]/12 dark:border-zinc-800 text-[#555555] hover:text-[#D9541E] transition-colors"
+                    className="p-1.5 rounded border border-[#111111]/12 dark:border-zinc-800 text-[#555555] hover:text-[#D9541E] dark:hover:text-[#D9541E] hover:border-[#D9541E] dark:hover:border-[#D9541E] transition-colors"
                     aria-label={`Call ${profile.phone}`}
                     title={`Call ${profile.phone}`}
                   >
@@ -100,7 +100,7 @@ export function Footer({ profile }: FooterProps) {
                     href={getWhatsAppUrl(profile.phone)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-1.5 rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                    className="p-1.5 rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-[#D9541E] dark:hover:text-[#D9541E] hover:border-[#D9541E] dark:hover:border-[#D9541E] transition-colors"
                     aria-label="Direct WhatsApp Message"
                     title="Direct WhatsApp Message"
                   >
@@ -113,7 +113,7 @@ export function Footer({ profile }: FooterProps) {
                   href={profile.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-1.5 rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  className="p-1.5 rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-[#D9541E] dark:hover:text-[#D9541E] hover:border-[#D9541E] dark:hover:border-[#D9541E] transition-colors"
                   aria-label="GitHub"
                 >
                   <GithubIcon className="h-3.5 w-3.5" />
@@ -124,7 +124,7 @@ export function Footer({ profile }: FooterProps) {
                   href={profile.linkedIn}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-1.5 rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100 transition-colors"
+                  className="p-1.5 rounded border border-zinc-200 dark:border-zinc-800 text-zinc-500 hover:text-[#D9541E] dark:hover:text-[#D9541E] hover:border-[#D9541E] dark:hover:border-[#D9541E] transition-colors"
                   aria-label="LinkedIn"
                 >
                   <LinkedinIcon className="h-3.5 w-3.5" />

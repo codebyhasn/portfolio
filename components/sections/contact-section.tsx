@@ -289,7 +289,7 @@ function PhoneContactCard({
           <a
             href={telHref}
             title="Direct Phone Call"
-            className="inline-flex items-center gap-1 rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-2.5 py-1.5 text-[11px] font-mono text-zinc-700 dark:text-zinc-300 transition-colors"
+            className="inline-flex items-center gap-1 rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:border-[#D9541E] dark:hover:border-[#D9541E] px-2.5 py-1.5 text-[11px] font-mono text-zinc-700 dark:text-zinc-300 hover:text-[#D9541E] dark:hover:text-[#D9541E] transition-colors"
           >
             <PhoneCall className="h-3 w-3 text-amber-500" />
             <span>Call</span>
@@ -301,7 +301,7 @@ function PhoneContactCard({
             target="_blank"
             rel="noopener noreferrer"
             title="Direct WhatsApp Message"
-            className="inline-flex items-center gap-1.5 rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 px-2.5 py-1.5 text-[11px] font-mono text-zinc-700 dark:text-zinc-300 hover:text-zinc-950 dark:hover:text-zinc-100 transition-colors"
+            className="inline-flex items-center gap-1.5 rounded border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/60 hover:bg-zinc-100 dark:hover:bg-zinc-800 hover:border-[#D9541E] dark:hover:border-[#D9541E] px-2.5 py-1.5 text-[11px] font-mono text-zinc-700 dark:text-zinc-300 hover:text-[#D9541E] dark:hover:text-[#D9541E] transition-colors"
           >
             <WhatsAppIcon className="h-3.5 w-3.5" />
             <span>WhatsApp</span>
@@ -312,7 +312,7 @@ function PhoneContactCard({
             type="button"
             onClick={handleCopy}
             title="Copy phone number"
-            className="p-1.5 rounded border border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 bg-zinc-50 dark:bg-zinc-900/60 transition-colors cursor-pointer"
+            className="p-1.5 rounded border border-zinc-200 dark:border-zinc-800 text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-200 hover:border-[#D9541E] dark:hover:border-[#D9541E] bg-zinc-50 dark:bg-zinc-900/60 transition-colors cursor-pointer"
           >
             {copied ? (
               <Check className="h-3.5 w-3.5 text-emerald-500" />

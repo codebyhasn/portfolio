@@ -35,7 +35,7 @@ export function AdminLoginForm() {
       <div className="mb-8 text-center">
         <div className="mx-auto mb-4 relative h-16 w-16 transition-transform hover:scale-105 flex items-center justify-center">
           <Image
-            src="/brand-logo.png?v=3"
+            src="/brand-logo.png?v=4"
             alt="codebyhasn logo"
             width={120}
             height={120}

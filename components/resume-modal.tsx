@@ -30,7 +30,8 @@ export function ResumeModal({ isOpen, onClose, profile }: ResumeModalProps) {
     };
   }, [isOpen, onClose]);
 
-  const resumeHref = profile.resumeUrl || "/resume.pdf";
+  const rawHref = profile.resumeUrl || "/resume.pdf";
+  const resumeHref = rawHref.includes("?") ? rawHref : `${rawHref}?v=3`;
   const telHref = profile.phone ? `tel:${cleanPhoneForTel(profile.phone)}` : "";
   const waHref = profile.phone ? getWhatsAppUrl(profile.phone) : "";
 
@@ -83,7 +84,7 @@ export function ResumeModal({ isOpen, onClose, profile }: ResumeModalProps) {
                   <>
                     <a
                       href={telHref}
-                      className="inline-flex items-center gap-1.5 rounded border border-[#111111]/12 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2.5 py-1 text-[#111111] dark:text-zinc-200 hover:border-[#D9541E] hover:text-[#D9541E] dark:hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1.5 rounded border border-[#111111]/12 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2.5 py-1 text-[#111111] dark:text-zinc-200 hover:border-[#D9541E] dark:hover:border-[#D9541E] hover:text-[#D9541E] dark:hover:text-[#D9541E] transition-colors"
                       title="Direct Phone Call"
                     >
                       <PhoneCall className="h-3 w-3 text-[#D9541E]" />
@@ -94,7 +95,7 @@ export function ResumeModal({ isOpen, onClose, profile }: ResumeModalProps) {
                       href={waHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded border border-[#111111]/12 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2.5 py-1 text-[#111111] dark:text-zinc-200 hover:border-[#D9541E] hover:text-[#D9541E] dark:hover:text-white transition-colors"
+                      className="inline-flex items-center gap-1.5 rounded border border-[#111111]/12 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2.5 py-1 text-[#111111] dark:text-zinc-200 hover:border-[#D9541E] dark:hover:border-[#D9541E] hover:text-[#D9541E] dark:hover:text-[#D9541E] transition-colors"
                       title="Direct WhatsApp Chat"
                     >
                       <WhatsAppIcon className="h-3.5 w-3.5" />
@@ -106,7 +107,7 @@ export function ResumeModal({ isOpen, onClose, profile }: ResumeModalProps) {
                 {profile.email && (
                   <a
                     href={`mailto:${profile.email}`}
-                    className="inline-flex items-center gap-1.5 rounded border border-[#111111]/12 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2.5 py-1 text-[#111111] dark:text-zinc-200 hover:border-[#D9541E] hover:text-[#D9541E] transition-colors"
+                    className="inline-flex items-center gap-1.5 rounded border border-[#111111]/12 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-2.5 py-1 text-[#111111] dark:text-zinc-200 hover:border-[#D9541E] dark:hover:border-[#D9541E] hover:text-[#D9541E] dark:hover:text-[#D9541E] transition-colors"
                   >
                     <Mail className="h-3 w-3 text-[#555555]" />
                     <span>{profile.email}</span>
@@ -117,7 +118,7 @@ export function ResumeModal({ isOpen, onClose, profile }: ResumeModalProps) {
               <div className="flex items-center gap-2">
                 <a
                   href={resumeHref}
-                  download
+                  download="Muhammad-Hassan-Resume.pdf"
                   className="inline-flex items-center gap-1.5 rounded bg-[#D9541E] hover:bg-[#bf4615] text-white px-3 py-1 font-semibold transition-colors cursor-pointer shadow-2xs"
                 >
                   <Download className="h-3.5 w-3.5" />

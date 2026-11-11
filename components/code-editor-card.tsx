@@ -9,7 +9,7 @@ interface CodeEditorCardProps {
 
 export function CodeEditorCard({ profile }: CodeEditorCardProps) {
   return (
-    <div className="rounded-lg border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-[#0f1117] shadow-sm overflow-hidden font-mono">
+    <div className="rounded-lg border border-zinc-300 dark:border-zinc-800/90 bg-white dark:bg-[#0f1117] shadow-xl overflow-hidden font-mono">
       {/* IDE Window Title Bar */}
       <div className="flex items-center justify-between border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#141720] px-4 py-2.5 text-xs select-none">
         <div className="flex items-center gap-2">
@@ -21,7 +21,7 @@ export function CodeEditorCard({ profile }: CodeEditorCardProps) {
           <FileCode2 className="h-3.5 w-3.5 text-amber-500" />
           <span>architecture.ts</span>
         </div>
-        <span className="text-[10px] text-zinc-400 uppercase font-mono">Production</span>
+        <span className="text-[10px] text-zinc-400 uppercase tracking-wider font-mono">Production</span>
       </div>
 
       {/* Code Content */}
@@ -115,7 +115,7 @@ export function CodeEditorCard({ profile }: CodeEditorCardProps) {
       </div>
 
       {/* Footer spec bar */}
-      <div className="border-t border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-[#12151e] px-4 py-2 flex items-center justify-between text-[10px] text-zinc-500 font-mono">
+      <div className="border-t border-zinc-200 dark:border-zinc-800/80 bg-zinc-50 dark:bg-[#12151e] px-4 py-2 flex items-center justify-between text-[10px] text-zinc-500 font-mono">
         <span className="flex items-center gap-1.5">
           <GitBranch className="h-3 w-3 text-amber-500" />
           <span>main / rev: 8f42c1</span>

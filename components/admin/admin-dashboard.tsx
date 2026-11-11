@@ -126,7 +126,7 @@ export function AdminDashboard({
           <div className="flex items-center gap-2.5">
             <div className="relative h-8 w-8 flex-shrink-0 flex items-center justify-center">
               <Image
-                src="/brand-logo.png?v=3"
+                src="/brand-logo.png?v=4"
                 alt="codebyhasn logo"
                 width={80}
                 height={80}

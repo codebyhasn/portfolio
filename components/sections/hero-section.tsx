@@ -144,7 +144,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
                       href={`tel:${cleanPhoneForTel(profile.phone)}`}
                       aria-label={`Call ${profile.phone}`}
                       title={`Direct Call: ${profile.phone}`}
-                      className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#111111] dark:hover:text-zinc-100 hover:border-[#D9541E] transition-colors"
+                      className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#D9541E] dark:hover:text-[#D9541E] hover:border-[#D9541E] dark:hover:border-[#D9541E] transition-colors"
                     >
                       <Phone className="h-4 w-4 text-[#D9541E]" />
                     </a>
@@ -154,7 +154,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
                       rel="noopener noreferrer"
                       aria-label="Direct WhatsApp Message"
                       title="Direct WhatsApp Message"
-                      className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#111111] dark:hover:text-zinc-100 hover:border-[#D9541E] transition-colors"
+                      className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#D9541E] dark:hover:text-[#D9541E] hover:border-[#D9541E] dark:hover:border-[#D9541E] transition-colors"
                     >
                       <WhatsAppIcon className="h-4 w-4" />
                     </a>
@@ -166,7 +166,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="GitHub Profile"
-                    className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#111111] dark:hover:text-zinc-100 transition-colors"
+                    className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#D9541E] dark:hover:text-[#D9541E] hover:border-[#D9541E] dark:hover:border-[#D9541E] transition-colors"
                   >
                     <GithubIcon className="h-4 w-4" />
                   </a>
@@ -177,7 +177,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label="LinkedIn Profile"
-                    className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#111111] dark:hover:text-zinc-100 transition-colors"
+                    className="flex h-9 w-9 items-center justify-center rounded-md border border-[#111111]/12 dark:border-white/10 bg-[#ebe5d8]/80 dark:bg-zinc-900/60 text-[#555555] dark:text-zinc-400 hover:text-[#D9541E] dark:hover:text-[#D9541E] hover:border-[#D9541E] dark:hover:border-[#D9541E] transition-colors"
                   >
                     <LinkedinIcon className="h-4 w-4" />
                   </a>

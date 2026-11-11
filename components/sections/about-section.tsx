@@ -102,7 +102,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
                     href={getWhatsAppUrl(profile.phone)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[10px] text-[#111111] dark:text-zinc-300 bg-[#ebe5d8]/70 dark:bg-zinc-800/80 hover:bg-[#ebe5d8] dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 px-2 py-0.5 rounded border border-[#111111]/10 dark:border-zinc-700/80 transition-colors font-medium"
+                    className="inline-flex items-center gap-1 text-[10px] text-[#111111] dark:text-zinc-300 bg-[#ebe5d8]/70 dark:bg-zinc-800/80 hover:bg-[#ebe5d8] dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 hover:border-[#D9541E] dark:hover:border-[#D9541E] px-2 py-0.5 rounded border border-[#111111]/10 dark:border-zinc-700/80 transition-colors font-medium"
                     title="Direct WhatsApp Message"
                   >
                     <WhatsAppIcon className="h-3 w-3" />
