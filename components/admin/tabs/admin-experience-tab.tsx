@@ -93,8 +93,9 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
           <form onSubmit={handleSave} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Company</label>
+                <label htmlFor="exp-company" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Company</label>
                 <input
+                  id="exp-company"
                   type="text"
                   name="company"
                   defaultValue={editingExp?.company || ""}
@@ -105,8 +106,9 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Role Title</label>
+                <label htmlFor="exp-role" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Role Title</label>
                 <input
+                  id="exp-role"
                   type="text"
                   name="role"
                   defaultValue={editingExp?.role || ""}
@@ -119,8 +121,9 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Start Date</label>
+                <label htmlFor="exp-startDate" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Start Date</label>
                 <input
+                  id="exp-startDate"
                   type="text"
                   name="startDate"
                   defaultValue={editingExp?.startDate || ""}
@@ -131,8 +134,9 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">End Date</label>
+                <label htmlFor="exp-endDate" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">End Date</label>
                 <input
+                  id="exp-endDate"
                   type="text"
                   name="endDate"
                   defaultValue={editingExp?.endDate || "Present"}
@@ -143,8 +147,9 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Location</label>
+                <label htmlFor="exp-location" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Location</label>
                 <input
+                  id="exp-location"
                   type="text"
                   name="location"
                   defaultValue={editingExp?.location || "Islamabad, Pakistan"}
@@ -154,8 +159,9 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Short Summary</label>
+              <label htmlFor="exp-description" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Short Summary</label>
               <input
+                id="exp-description"
                 type="text"
                 name="description"
                 defaultValue={editingExp?.description || ""}
@@ -165,10 +171,11 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">
+              <label htmlFor="exp-achievements" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">
                 Accomplishments (One bullet per line)
               </label>
               <textarea
+                id="exp-achievements"
                 name="achievements"
                 rows={5}
                 defaultValue={editingExp?.achievements ? editingExp.achievements.join("\n") : ""}
@@ -178,10 +185,11 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">
+              <label htmlFor="exp-techStack" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">
                 Tech Stack (comma-separated)
               </label>
               <input
+                id="exp-techStack"
                 type="text"
                 name="techStack"
                 defaultValue={editingExp?.techStack ? editingExp.techStack.join(", ") : ""}
@@ -192,8 +200,9 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
 
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Display Order</label>
+                <label htmlFor="exp-order" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Display Order</label>
                 <input
+                  id="exp-order"
                   type="number"
                   name="order"
                   defaultValue={editingExp?.order ?? 0}
@@ -202,8 +211,9 @@ export function AdminExperienceTab({ experiences }: AdminExperienceTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Visibility</label>
+                <label htmlFor="exp-visible" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Visibility</label>
                 <select
+                  id="exp-visible"
                   name="visible"
                   defaultValue={editingExp?.visible ? "true" : "false"}
                   className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/60 px-3.5 py-2 text-sm text-zinc-900 dark:text-zinc-200 outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20"

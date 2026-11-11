@@ -108,8 +108,9 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
           <form onSubmit={handleSave} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Project Title</label>
+                <label htmlFor="proj-title" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Project Title</label>
                 <input
+                  id="proj-title"
                   type="text"
                   name="title"
                   defaultValue={editingProject?.title || ""}
@@ -120,8 +121,9 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Slug / Identifier</label>
+                <label htmlFor="proj-slug" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Slug / Identifier</label>
                 <input
+                  id="proj-slug"
                   type="text"
                   name="slug"
                   defaultValue={editingProject?.slug || ""}
@@ -132,8 +134,9 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Description</label>
+              <label htmlFor="proj-description" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Description</label>
               <textarea
+                id="proj-description"
                 name="description"
                 rows={3}
                 defaultValue={editingProject?.description || ""}
@@ -144,10 +147,11 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">
+              <label htmlFor="proj-tags" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">
                 Tags / Technologies (comma-separated)
               </label>
               <input
+                id="proj-tags"
                 type="text"
                 name="tags"
                 defaultValue={editingProject?.tags ? editingProject.tags.join(", ") : ""}
@@ -159,8 +163,9 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Live URL (optional)</label>
+                <label htmlFor="proj-liveUrl" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Live URL (optional)</label>
                 <input
+                  id="proj-liveUrl"
                   type="url"
                   name="liveUrl"
                   defaultValue={editingProject?.liveUrl || ""}
@@ -170,8 +175,9 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">GitHub / Code URL (optional)</label>
+                <label htmlFor="proj-githubUrl" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">GitHub / Code URL (optional)</label>
                 <input
+                  id="proj-githubUrl"
                   type="url"
                   name="githubUrl"
                   defaultValue={editingProject?.githubUrl || ""}
@@ -197,10 +203,11 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
                 )}
               </div>
               <div className="space-y-1 text-center sm:text-left">
-                <label className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:text-white transition-colors">
+                <label htmlFor="proj-coverFile" className="inline-flex cursor-pointer items-center gap-2 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-1.5 text-xs font-medium text-zinc-700 dark:text-zinc-300 hover:text-zinc-900 dark:hover:white transition-colors">
                   <Upload className="h-3.5 w-3.5" />
                   Upload Project Cover
                   <input
+                    id="proj-coverFile"
                     type="file"
                     name="coverFile"
                     accept="image/*"
@@ -214,8 +221,9 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Featured Project?</label>
+                <label htmlFor="proj-featured" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Featured Project?</label>
                 <select
+                  id="proj-featured"
                   name="featured"
                   defaultValue={editingProject?.featured ? "true" : "false"}
                   className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/60 px-3.5 py-2 text-sm text-zinc-900 dark:text-zinc-200 outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20"
@@ -226,8 +234,9 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Visibility</label>
+                <label htmlFor="proj-visible" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Visibility</label>
                 <select
+                  id="proj-visible"
                   name="visible"
                   defaultValue={editingProject?.visible !== false ? "true" : "false"}
                   className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/60 px-3.5 py-2 text-sm text-zinc-900 dark:text-zinc-200 outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20"
@@ -238,8 +247,9 @@ export function AdminProjectsTab({ projects }: AdminProjectsTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Sort Order</label>
+                <label htmlFor="proj-order" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Sort Order</label>
                 <input
+                  id="proj-order"
                   type="number"
                   name="order"
                   defaultValue={editingProject?.order ?? 0}

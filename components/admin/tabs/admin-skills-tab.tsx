@@ -101,8 +101,9 @@ export function AdminSkillsTab({ skills }: AdminSkillsTabProps) {
           <form onSubmit={handleSave} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Skill / Tech Name</label>
+                <label htmlFor="skill-name" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Skill / Tech Name</label>
                 <input
+                  id="skill-name"
                   type="text"
                   name="name"
                   defaultValue={editingSkill?.name || ""}
@@ -113,8 +114,9 @@ export function AdminSkillsTab({ skills }: AdminSkillsTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Category</label>
+                <label htmlFor="skill-category" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Category</label>
                 <select
+                  id="skill-category"
                   name="category"
                   defaultValue={editingSkill?.category || "Frontend"}
                   className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/60 px-3.5 py-2 text-sm text-zinc-900 dark:text-zinc-200 outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20"
@@ -130,8 +132,9 @@ export function AdminSkillsTab({ skills }: AdminSkillsTabProps) {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Proficiency Level (0-100%)</label>
+                <label htmlFor="skill-level" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Proficiency Level (0-100%)</label>
                 <input
+                  id="skill-level"
                   type="number"
                   name="level"
                   min="1"
@@ -142,8 +145,9 @@ export function AdminSkillsTab({ skills }: AdminSkillsTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Sort Order</label>
+                <label htmlFor="skill-order" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Sort Order</label>
                 <input
+                  id="skill-order"
                   type="number"
                   name="order"
                   defaultValue={editingSkill?.order ?? 0}
@@ -152,8 +156,9 @@ export function AdminSkillsTab({ skills }: AdminSkillsTabProps) {
               </div>
 
               <div>
-                <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Visibility</label>
+                <label htmlFor="skill-visible" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1">Visibility</label>
                 <select
+                  id="skill-visible"
                   name="visible"
                   defaultValue={editingSkill?.visible !== false ? "true" : "false"}
                   className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/60 px-3.5 py-2 text-sm text-zinc-900 dark:text-zinc-200 outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20"

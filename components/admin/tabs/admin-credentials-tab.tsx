@@ -172,10 +172,11 @@ export function AdminCredentialsTab({ credentials: initialCredentials }: AdminCr
           <form onSubmit={handleSave} className="space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                <label htmlFor="cred-title" className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
                   Degree / Certification Title *
                 </label>
                 <input
+                  id="cred-title"
                   type="text"
                   name="title"
                   required
@@ -186,10 +187,11 @@ export function AdminCredentialsTab({ credentials: initialCredentials }: AdminCr
               </div>
 
               <div>
-                <label className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                <label htmlFor="cred-issuer" className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
                   Issuer / Institution *
                 </label>
                 <input
+                  id="cred-issuer"
                   type="text"
                   name="issuer"
                   required
@@ -200,10 +202,11 @@ export function AdminCredentialsTab({ credentials: initialCredentials }: AdminCr
               </div>
 
               <div>
-                <label className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                <label htmlFor="cred-type" className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
                   Category Type *
                 </label>
                 <select
+                  id="cred-type"
                   name="type"
                   defaultValue={editingCred?.type || "Education"}
                   className="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-900 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-[#D9541E]"
@@ -216,10 +219,11 @@ export function AdminCredentialsTab({ credentials: initialCredentials }: AdminCr
               </div>
 
               <div>
-                <label className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                <label htmlFor="cred-period" className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
                   Period / Completion Date *
                 </label>
                 <input
+                  id="cred-period"
                   type="text"
                   name="period"
                   required
@@ -230,10 +234,11 @@ export function AdminCredentialsTab({ credentials: initialCredentials }: AdminCr
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                <label htmlFor="cred-url" className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
                   Verification / Certificate URL (Optional)
                 </label>
                 <input
+                  id="cred-url"
                   type="url"
                   name="url"
                   placeholder="https://coursera.org/verify/..."
@@ -243,10 +248,11 @@ export function AdminCredentialsTab({ credentials: initialCredentials }: AdminCr
               </div>
 
               <div className="sm:col-span-2">
-                <label className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                <label htmlFor="cred-description" className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
                   Description / Curriculum Highlights *
                 </label>
                 <textarea
+                  id="cred-description"
                   name="description"
                   required
                   rows={3}
@@ -257,10 +263,11 @@ export function AdminCredentialsTab({ credentials: initialCredentials }: AdminCr
               </div>
 
               <div>
-                <label className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
+                <label htmlFor="cred-order" className="block text-xs font-mono font-medium text-zinc-700 dark:text-zinc-300 mb-1">
                   Sort Order
                 </label>
                 <input
+                  id="cred-order"
                   type="number"
                   name="order"
                   defaultValue={editingCred?.order ?? credentials.length}
@@ -269,8 +276,9 @@ export function AdminCredentialsTab({ credentials: initialCredentials }: AdminCr
               </div>
 
               <div className="flex items-center pt-6">
-                <label className="flex items-center gap-2 cursor-pointer text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                <label htmlFor="cred-visible" className="flex items-center gap-2 cursor-pointer text-sm font-medium text-zinc-800 dark:text-zinc-200">
                   <input
+                    id="cred-visible"
                     type="checkbox"
                     name="visible"
                     value="true"

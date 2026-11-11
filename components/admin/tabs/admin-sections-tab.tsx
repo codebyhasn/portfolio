@@ -370,10 +370,11 @@ export function AdminSectionsTab({ navSections }: AdminSectionsTabProps) {
               <form onSubmit={handleEditSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
+                    <label htmlFor="edit-sec-number" className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
                       Prefix Number
                     </label>
                     <input
+                      id="edit-sec-number"
                       name="number"
                       defaultValue={editingSection.number}
                       required
@@ -382,10 +383,11 @@ export function AdminSectionsTab({ navSections }: AdminSectionsTabProps) {
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
+                    <label htmlFor="edit-sec-order" className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
                       Display Order
                     </label>
                     <input
+                      id="edit-sec-order"
                       name="order"
                       type="number"
                       defaultValue={editingSection.order}
@@ -396,10 +398,11 @@ export function AdminSectionsTab({ navSections }: AdminSectionsTabProps) {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
+                  <label htmlFor="edit-sec-label" className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
                     Navbar Label
                   </label>
                   <input
+                    id="edit-sec-label"
                     name="label"
                     defaultValue={editingSection.label}
                     required
@@ -410,10 +413,11 @@ export function AdminSectionsTab({ navSections }: AdminSectionsTabProps) {
 
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
+                    <label htmlFor="edit-sec-key" className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
                       System Key
                     </label>
                     <input
+                      id="edit-sec-key"
                       name="key"
                       defaultValue={editingSection.key}
                       required
@@ -422,10 +426,11 @@ export function AdminSectionsTab({ navSections }: AdminSectionsTabProps) {
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
+                    <label htmlFor="edit-sec-targetId" className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
                       Target Anchor ID
                     </label>
                     <input
+                      id="edit-sec-targetId"
                       name="targetId"
                       defaultValue={editingSection.targetId}
                       required
@@ -503,10 +508,11 @@ export function AdminSectionsTab({ navSections }: AdminSectionsTabProps) {
               <form onSubmit={handleCreateSubmit} className="space-y-4">
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
+                    <label htmlFor="create-sec-number" className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
                       Prefix Number
                     </label>
                     <input
+                      id="create-sec-number"
                       name="number"
                       defaultValue={(sections.length + 1).toString().padStart(2, "0")}
                       required
@@ -515,10 +521,11 @@ export function AdminSectionsTab({ navSections }: AdminSectionsTabProps) {
                     />
                   </div>
                   <div>
-                    <label className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
+                    <label htmlFor="create-sec-key" className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
                       System Key
                     </label>
                     <input
+                      id="create-sec-key"
                       name="key"
                       required
                       placeholder="e.g. blog or services"
@@ -528,10 +535,11 @@ export function AdminSectionsTab({ navSections }: AdminSectionsTabProps) {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
+                  <label htmlFor="create-sec-label" className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
                     Navbar Label
                   </label>
                   <input
+                    id="create-sec-label"
                     name="label"
                     required
                     placeholder="e.g. Insights"
@@ -540,10 +548,11 @@ export function AdminSectionsTab({ navSections }: AdminSectionsTabProps) {
                 </div>
 
                 <div>
-                  <label className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
+                  <label htmlFor="create-sec-targetId" className="block text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1">
                     Target Anchor ID
                   </label>
                   <input
+                    id="create-sec-targetId"
                     name="targetId"
                     required
                     placeholder="#insights"

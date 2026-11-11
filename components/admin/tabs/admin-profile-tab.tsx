@@ -209,8 +209,10 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
 
               {/* Display Toggle Switch */}
               <div className="pt-2 border-t border-zinc-200 dark:border-zinc-800/80 flex items-center justify-between sm:justify-start gap-4">
-                <label className="flex items-center gap-3 cursor-pointer select-none">
+                <label htmlFor="showAvatar" className="flex items-center gap-3 cursor-pointer select-none">
                   <input
+                    id="showAvatar"
+                    name="showAvatar"
                     type="checkbox"
                     checked={showAvatar}
                     onChange={(e) => setShowAvatar(e.target.checked)}
@@ -237,8 +239,9 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Full Name</label>
+              <label htmlFor="profile-name" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Full Name</label>
               <input
+                id="profile-name"
                 type="text"
                 name="name"
                 defaultValue={profile?.name || "Muhammad Hassan"}
@@ -248,8 +251,9 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Availability Status</label>
+              <label htmlFor="profile-availableForWork" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Availability Status</label>
               <select
+                id="profile-availableForWork"
                 name="availableForWork"
                 defaultValue={profile?.availableForWork ? "true" : "false"}
                 className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/60 px-4 py-2.5 text-sm text-zinc-900 dark:text-zinc-200 outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20"
@@ -262,8 +266,9 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Primary Headline</label>
+              <label htmlFor="profile-headline" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Primary Headline</label>
               <input
+                id="profile-headline"
                 type="text"
                 name="headline"
                 defaultValue={profile?.headline || "Senior Frontend / Full-Stack Engineer"}
@@ -273,8 +278,9 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Sub-Headline Chips</label>
+              <label htmlFor="profile-subHeadline" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Sub-Headline Chips</label>
               <input
+                id="profile-subHeadline"
                 type="text"
                 name="subHeadline"
                 defaultValue={profile?.subHeadline || "React · Next.js · TypeScript · Laravel · 6+ Years"}
@@ -285,8 +291,9 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
           </div>
 
           <div>
-            <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Bio / Executive Summary</label>
+            <label htmlFor="profile-bio" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">Bio / Executive Summary</label>
             <textarea
+              id="profile-bio"
               name="bio"
               rows={4}
               defaultValue={profile?.bio || ""}
@@ -304,10 +311,11 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
+              <label htmlFor="profile-location" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
                 <MapPin className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" /> Location
               </label>
               <input
+                id="profile-location"
                 type="text"
                 name="location"
                 defaultValue={profile?.location || "Islamabad, Pakistan"}
@@ -316,10 +324,11 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
+              <label htmlFor="profile-email" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
                 <Mail className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" /> Email
               </label>
               <input
+                id="profile-email"
                 type="email"
                 name="email"
                 defaultValue={profile?.email || "codebyhasn@gmail.com"}
@@ -328,10 +337,11 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
+              <label htmlFor="profile-phone" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
                 <Phone className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" /> Phone &amp; WhatsApp Direct Line
               </label>
               <input
+                id="profile-phone"
                 type="text"
                 name="phone"
                 defaultValue={profile?.phone || "+92 (333) 271 3381"}
@@ -344,10 +354,11 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
+              <label htmlFor="profile-github" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
                 <Globe className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" /> GitHub URL
               </label>
               <input
+                id="profile-github"
                 type="url"
                 name="github"
                 defaultValue={profile?.github ?? "https://github.com/codebyhasn"}
@@ -357,10 +368,11 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
             </div>
 
             <div className="sm:col-span-2">
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
+              <label htmlFor="profile-linkedIn" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5 flex items-center gap-1.5">
                 <Link2 className="h-3.5 w-3.5 text-amber-600 dark:text-amber-400" /> LinkedIn URL
               </label>
               <input
+                id="profile-linkedIn"
                 type="url"
                 name="linkedIn"
                 defaultValue={profile?.linkedIn ?? "https://linkedin.com/in/codebyhasn"}
@@ -386,10 +398,11 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
 
           <div className="space-y-4 pt-1">
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">
+              <label htmlFor="profile-seoTitle" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">
                 Custom SEO Title (Browser Tab &amp; Google Result)
               </label>
               <input
+                id="profile-seoTitle"
                 type="text"
                 name="seoTitle"
                 defaultValue={profile?.seoTitle || ""}
@@ -402,10 +415,11 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">
+              <label htmlFor="profile-seoDescription" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">
                 Meta Description (Search Snippet &amp; Social Previews)
               </label>
               <textarea
+                id="profile-seoDescription"
                 name="seoDescription"
                 rows={3}
                 defaultValue={profile?.seoDescription || ""}
@@ -418,10 +432,11 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
             </div>
 
             <div>
-              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">
+              <label htmlFor="profile-seoKeywords" className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">
                 Additional Comma-Separated Keywords
               </label>
               <input
+                id="profile-seoKeywords"
                 type="text"
                 name="seoKeywords"
                 defaultValue={profile?.seoKeywords || ""}
