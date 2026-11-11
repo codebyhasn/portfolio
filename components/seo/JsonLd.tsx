@@ -23,7 +23,7 @@ export function JsonLd({ profile }: JsonLdProps) {
     alternateName: 'codebyhasn',
     jobTitle: profile?.title || 'Senior Frontend / Full-Stack Engineer',
     url: siteUrl,
-    image: profile?.avatarUrl || `${siteUrl}/brand/avatar.jpg`,
+    image: profile?.avatarUrl || `${siteUrl}/logo.png`,
     email: profile?.email || 'codebyhasn@gmail.com',
     telephone: profile?.phone || '+923332713381',
     address: {

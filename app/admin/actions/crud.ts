@@ -58,7 +58,7 @@ export async function updateProfileAction(formData: FormData) {
     await prisma.profile.update({ where: { id: existing.id }, data });
   } else {
     await prisma.profile.create({
-      data: { ...data, avatarUrl: avatarUrl ?? "/assets/avatar.jpg" } as Parameters<typeof prisma.profile.create>[0]["data"],
+      data: { ...data, avatarUrl: avatarUrl ?? "/assets/logo.png" } as Parameters<typeof prisma.profile.create>[0]["data"],
     });
   }
 

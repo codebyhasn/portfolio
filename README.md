@@ -49,7 +49,7 @@ An editorial, high-performance developer portfolio and integrated Content Manage
 │   └── seed.ts               # Pre-populated data extracted directly from resume
 └── public/
     ├── site.webmanifest      # Progressive Web App configuration
-    └── brand/                # Vector brandmarks and favicon assets
+    └── assets/                # Vector brandmarks and favicon assets
 ```
 
 ---

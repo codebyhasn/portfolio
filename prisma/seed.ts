@@ -21,7 +21,7 @@ async function main() {
       phone: "+92 (333) 271 3381",
       linkedIn: "https://linkedin.com/in/codebyhasn",
       github: "https://github.com/codebyhasn",
-      avatarUrl: "/assets/avatar.jpg",
+      avatarUrl: "/assets/logo.png",
       availableForWork: true,
       resumeUrl: "/resume.pdf",
     },
