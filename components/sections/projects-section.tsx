@@ -92,7 +92,8 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
       : projects.filter((p) => p.tags.includes(activeFilter));
 
   return (
-    <section id="works" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-zinc-200/80 dark:border-zinc-800/80">
+    <section id="works" className="relative py-24 px-4 sm:px-6 lg:px-8 border-b border-zinc-200/80 dark:border-zinc-800/80">
+      <div id="projects" className="absolute -top-24 pointer-events-none" aria-hidden="true" />
       <div className="mx-auto max-w-7xl">
         {/* Section Index Marker */}
         <div className="flex items-center justify-between border-b border-zinc-200/80 dark:border-zinc-800/80 pb-3 mb-10 text-xs font-mono">

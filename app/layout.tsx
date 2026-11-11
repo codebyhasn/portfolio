@@ -173,7 +173,7 @@ export default async function RootLayout({
         {/* Subtle noise grain texture overlay to remove sterile digital sheen */}
         <div
           aria-hidden="true"
-          className="pointer-events-none fixed inset-0 z-50 opacity-[0.035] grain-overlay"
+          className="pointer-events-none fixed inset-0 z-30 opacity-[0.035] grain-overlay"
         />
         <ThemeProvider
           attribute="class"

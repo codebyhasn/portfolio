@@ -59,7 +59,8 @@ export function ContactSection({ profile }: ContactSectionProps) {
   };
 
   return (
-    <section id="dispatch" className="py-24 px-4 sm:px-6 lg:px-8">
+    <section id="dispatch" className="relative py-24 px-4 sm:px-6 lg:px-8">
+      <div id="contact" className="absolute -top-24 pointer-events-none" aria-hidden="true" />
       <div className="mx-auto max-w-7xl">
         {/* Section Index Marker */}
         <div className="flex items-center justify-between border-b border-zinc-200/80 dark:border-zinc-800/80 pb-3 mb-12 text-xs font-mono">
@@ -157,12 +158,15 @@ export function ContactSection({ profile }: ContactSectionProps) {
                 <form onSubmit={handleSubmit} className="space-y-4 font-mono text-xs">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-zinc-700 dark:text-zinc-300 mb-1 font-semibold uppercase text-[11px]">
+                      <label htmlFor="name" className="block text-zinc-700 dark:text-zinc-300 mb-1 font-semibold uppercase text-[11px]">
                         Your Name *
                       </label>
                       <input
+                        id="name"
+                        name="name"
                         type="text"
                         required
+                        autoComplete="name"
                         value={form.name}
                         onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
                         placeholder="e.g. Elena Rostova"
@@ -171,12 +175,15 @@ export function ContactSection({ profile }: ContactSectionProps) {
                     </div>
 
                     <div>
-                      <label className="block text-zinc-700 dark:text-zinc-300 mb-1 font-semibold uppercase text-[11px]">
+                      <label htmlFor="email" className="block text-zinc-700 dark:text-zinc-300 mb-1 font-semibold uppercase text-[11px]">
                         Corporate / Personal Email *
                       </label>
                       <input
+                        id="email"
+                        name="email"
                         type="email"
                         required
+                        autoComplete="email"
                         value={form.email}
                         onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
                         placeholder="elena@company.com"
@@ -186,10 +193,12 @@ export function ContactSection({ profile }: ContactSectionProps) {
                   </div>
 
                   <div>
-                    <label className="block text-zinc-700 dark:text-zinc-300 mb-1 font-semibold uppercase text-[11px]">
+                    <label htmlFor="subject" className="block text-zinc-700 dark:text-zinc-300 mb-1 font-semibold uppercase text-[11px]">
                       Subject / Engagement Type *
                     </label>
                     <input
+                      id="subject"
+                      name="subject"
                       type="text"
                       required
                       value={form.subject}
@@ -200,10 +209,12 @@ export function ContactSection({ profile }: ContactSectionProps) {
                   </div>
 
                   <div>
-                    <label className="block text-zinc-700 dark:text-zinc-300 mb-1 font-semibold uppercase text-[11px]">
+                    <label htmlFor="message" className="block text-zinc-700 dark:text-zinc-300 mb-1 font-semibold uppercase text-[11px]">
                       Project Scope &amp; Engineering Requirements *
                     </label>
                     <textarea
+                      id="message"
+                      name="message"
                       rows={5}
                       required
                       value={form.message}

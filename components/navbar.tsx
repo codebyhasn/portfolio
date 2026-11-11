@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -33,14 +33,16 @@ export function Navbar({
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [localTime, setLocalTime] = useState("");
 
-  const activeNavItems = (navSections && navSections.length > 0 ? navSections : defaultNavItems).map(
-    (item, idx) => ({
-      key: item.key,
-      index: item.number || (idx + 1).toString().padStart(2, "0"),
-      label: item.label,
-      href: item.targetId.startsWith("#") ? item.targetId : `#${item.targetId}`,
-    })
-  );
+  const activeNavItems = useMemo(() => {
+    return (navSections && navSections.length > 0 ? navSections : defaultNavItems).map(
+      (item, idx) => ({
+        key: item.key,
+        index: item.number || (idx + 1).toString().padStart(2, "0"),
+        label: item.label,
+        href: item.targetId.startsWith("#") ? item.targetId : `#${item.targetId}`,
+      })
+    );
+  }, [navSections]);
 
   const [activeSection, setActiveSection] = useState<string>(
     activeNavItems[0]?.href.slice(1) || "architecture"
@@ -92,36 +94,84 @@ export function Navbar({
     return () => window.removeEventListener("scroll", handleScrollSpy);
   }, [activeNavItems]);
 
-  // Smooth scroll handler with fixed header compensation
-  const handleNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    setIsMobileOpen(false);
+  // Helper to locate target section element by anchor id or known aliases
+  const findTargetElement = useCallback((targetId: string): HTMLElement | null => {
+    if (!targetId) return null;
+    const cleanId = targetId.startsWith("#") ? targetId.slice(1) : targetId;
+    return (
+      document.getElementById(cleanId) ||
+      (cleanId === "dossier" ? document.getElementById("about") : null) ||
+      (cleanId === "about" ? document.getElementById("dossier") : null) ||
+      (cleanId === "chronology" ? document.getElementById("experience") : null) ||
+      (cleanId === "experience" ? document.getElementById("chronology") : null) ||
+      (cleanId === "credentials" ? document.getElementById("education") : null) ||
+      (cleanId === "education" ? document.getElementById("credentials") : null) ||
+      (cleanId === "works" ? document.getElementById("projects") : null) ||
+      (cleanId === "projects" ? document.getElementById("works") : null) ||
+      (cleanId === "doctrines" ? document.getElementById("skills") : null) ||
+      (cleanId === "skills" ? document.getElementById("doctrines") : null) ||
+      (cleanId === "dispatch" ? document.getElementById("contact") : null) ||
+      (cleanId === "contact" ? document.getElementById("dispatch") : null) ||
+      (cleanId === "architecture" ? document.getElementById("hero") : null) ||
+      (cleanId === "hero" ? document.getElementById("architecture") : null)
+    );
+  }, []);
 
-    if (href.startsWith("#")) {
-      const targetId = href.slice(1);
-      const element = document.getElementById(targetId);
-      if (element) {
-        // Calculate offset position accounting for the fixed masthead and ticker
-        const headerOffset = 88;
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+  // Smooth scroll handler with robust mobile compatibility and drawer exit handling
+  const handleNavClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+      e.preventDefault();
+      setIsMobileOpen(false);
 
-        window.scrollTo({
-          top: Math.max(0, offsetPosition),
-          behavior: "smooth",
-        });
+      if (href.startsWith("#")) {
+        const targetId = href.slice(1);
+        const element = findTargetElement(targetId);
 
-        if (window.history.pushState) {
-          window.history.pushState(null, "", href);
+        if (element) {
+          const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+          // Responsive header compensation (mobile header is 56px, desktop with ticker is 88px)
+          const headerOffset = isMobile ? 64 : 88;
+          const elementTop = element.getBoundingClientRect().top;
+          const targetY = Math.max(0, elementTop + (window.pageYOffset || window.scrollY) - headerOffset);
+
+          if (window.history.pushState) {
+            window.history.pushState(null, "", href);
+          }
+
+          const performScroll = (behavior: ScrollBehavior = "smooth") => {
+            window.scrollTo({
+              top: targetY,
+              behavior,
+            });
+          };
+
+          // 1. Initial scroll trigger
+          performScroll("smooth");
+
+          // 2. On mobile, drawer height collapse can cancel in-flight smooth scroll in Safari/WebKit.
+          // Re-trigger scroll after animation start and finish to guarantee landing.
+          if (isMobile) {
+            setTimeout(() => {
+              if (Math.abs((window.pageYOffset || window.scrollY) - targetY) > 40) {
+                performScroll("smooth");
+              }
+            }, 100);
+
+            setTimeout(() => {
+              if (Math.abs((window.pageYOffset || window.scrollY) - targetY) > 40) {
+                performScroll("auto");
+              }
+            }, 250);
+          }
+        } else {
+          window.location.hash = href;
         }
+      } else {
+        window.location.href = href;
       }
-    } else {
-      window.location.href = href;
-    }
-  };
+    },
+    [findTargetElement]
+  );
 
   const homeHref = activeNavItems[0]?.href || "#architecture";
   const dispatchSection =
@@ -283,10 +333,10 @@ export function Navbar({
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="border-b border-[#111111]/12 dark:border-zinc-800 bg-[#f3eee3] dark:bg-[#0e0f12] px-4 py-4 md:hidden font-mono"
+            transition={{ duration: 0.18, ease: "easeInOut" }}
+            className="border-b border-[#111111]/12 dark:border-zinc-800 bg-[#f3eee3] dark:bg-[#0e0f12] px-4 py-4 md:hidden font-mono max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain shadow-xl"
           >
-            <div className="flex flex-col space-y-3">
+            <div className="flex flex-col space-y-1">
               {activeNavItems.map((item) => {
                 const isActive = activeSection === item.href.slice(1);
                 return (
@@ -294,10 +344,10 @@ export function Navbar({
                     key={item.href}
                     href={item.href}
                     onClick={(e) => handleNavClick(e, item.href)}
-                    className={`flex items-center justify-between py-2 text-xs border-b border-[#111111]/8 dark:border-zinc-800/50 cursor-pointer ${
+                    className={`flex items-center justify-between py-3 px-2 text-xs sm:text-sm border-b border-[#111111]/8 dark:border-zinc-800/50 cursor-pointer select-none touch-manipulation transition-colors rounded-sm active:bg-[#111111]/5 dark:active:bg-white/5 ${
                       isActive
-                        ? "text-[#111111] dark:text-zinc-100 font-bold"
-                        : "text-[#555555] dark:text-zinc-300"
+                        ? "text-[#111111] dark:text-zinc-100 font-bold bg-[#ebe5d8]/40 dark:bg-zinc-800/30"
+                        : "text-[#555555] dark:text-zinc-300 hover:text-[#111111] dark:hover:text-zinc-100"
                     }`}
                   >
                     <span>{item.label}</span>
@@ -314,10 +364,10 @@ export function Navbar({
                 );
               })}
               {profile?.phone && (
-                <div className="pt-2 flex items-center justify-between border-t border-[#111111]/10 dark:border-zinc-800/60 text-xs">
+                <div className="pt-3 pb-1 flex items-center justify-between border-t border-[#111111]/10 dark:border-zinc-800/60 text-xs">
                   <a
                     href={`tel:${cleanPhoneForTel(profile.phone)}`}
-                    className="flex items-center gap-1.5 text-[#555555] dark:text-zinc-300 hover:text-[#D9541E] dark:hover:text-[#E05D27]"
+                    className="flex items-center gap-1.5 text-[#555555] dark:text-zinc-300 hover:text-[#D9541E] dark:hover:text-[#E05D27] py-1.5 touch-manipulation"
                     title={`Call ${profile.phone}`}
                   >
                     <Phone className="h-3.5 w-3.5 text-[#D9541E]" />
@@ -327,7 +377,7 @@ export function Navbar({
                     href={getWhatsAppUrl(profile.phone)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] text-[#111111] dark:text-zinc-300 bg-[#ebe5d8] dark:bg-zinc-800/80 hover:bg-[#ded7c8] dark:hover:bg-zinc-700 px-2.5 py-1 rounded border border-[#111111]/12 dark:border-zinc-700/80 transition-colors font-medium"
+                    className="inline-flex items-center gap-1 text-[11px] text-[#111111] dark:text-zinc-300 bg-[#ebe5d8] dark:bg-zinc-800/80 hover:bg-[#ded7c8] dark:hover:bg-zinc-700 px-2.5 py-1.5 rounded border border-[#111111]/12 dark:border-zinc-700/80 transition-colors font-medium touch-manipulation"
                     title="Direct WhatsApp Message"
                   >
                     <WhatsAppIcon className="h-3 w-3" />
@@ -339,7 +389,7 @@ export function Navbar({
                 <a
                   href={dispatchHref}
                   onClick={(e) => handleNavClick(e, dispatchHref)}
-                  className="w-full flex items-center justify-center gap-2 rounded-md bg-[#D9541E] hover:bg-[#bf4615] text-white py-2 text-xs font-mono font-medium cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 rounded-md bg-[#D9541E] hover:bg-[#bf4615] text-white py-2.5 text-xs font-mono font-medium cursor-pointer touch-manipulation shadow-sm"
                 >
                   <span>Initiate Contact</span>
                   <ArrowUpRight className="h-3.5 w-3.5" />

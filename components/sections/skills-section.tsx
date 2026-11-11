@@ -56,7 +56,8 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
       : skills.filter((s) => s.category === activeTab);
 
   return (
-    <section id="doctrines" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-[#111111]/12 dark:border-zinc-800/80">
+    <section id="doctrines" className="relative py-24 px-4 sm:px-6 lg:px-8 border-b border-[#111111]/12 dark:border-zinc-800/80">
+      <div id="skills" className="absolute -top-24 pointer-events-none" aria-hidden="true" />
       <div className="mx-auto max-w-7xl">
         {/* Section Index Marker */}
         <div className="flex items-center justify-between border-b border-[#111111]/12 dark:border-zinc-800/80 pb-3 mb-12 text-xs font-mono">

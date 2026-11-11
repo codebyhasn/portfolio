@@ -56,10 +56,11 @@ export function AdminLoginForm() {
       <div className="rounded-2xl border border-[#111111]/12 dark:border-white/10 bg-white dark:bg-[#14161c] p-7 shadow-xs">
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block font-mono text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1.5 font-medium">
+            <label htmlFor="username" className="block font-mono text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1.5 font-medium">
               Username
             </label>
             <input
+              id="username"
               name="username"
               type="text"
               required
@@ -70,11 +71,12 @@ export function AdminLoginForm() {
           </div>
 
           <div>
-            <label className="block font-mono text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1.5 font-medium">
+            <label htmlFor="password" className="block font-mono text-[11px] uppercase tracking-wider text-[#555555] dark:text-zinc-400 mb-1.5 font-medium">
               Password
             </label>
             <div className="relative">
               <input
+                id="password"
                 name="password"
                 type={showPassword ? "text" : "password"}
                 required

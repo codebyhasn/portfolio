@@ -40,6 +40,7 @@ export function HeroSection({ profile }: HeroSectionProps) {
       id="architecture"
       className="relative pt-28 sm:pt-36 pb-20 px-4 sm:px-6 lg:px-8 border-b border-zinc-200/80 dark:border-zinc-800/80 overflow-hidden"
     >
+      <div id="hero" className="absolute -top-24 pointer-events-none" aria-hidden="true" />
       <div className="mx-auto max-w-7xl">
         {/* Section Index Marker */}
         <div className="flex items-center justify-between border-b border-zinc-200/80 dark:border-zinc-800/80 pb-3 mb-10 text-xs font-mono">
