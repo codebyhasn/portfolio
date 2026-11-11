@@ -371,6 +371,67 @@ export function AdminProfileTab({ profile }: AdminProfileTabProps) {
           </div>
         </div>
 
+        {/* SEO & Search Engine Optimization Card */}
+        <div className="bento-card p-6 space-y-4 shadow-2xs border-l-4 border-l-[#D9541E]">
+          <div className="flex items-center justify-between">
+            <div>
+              <h3 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 uppercase tracking-wider">
+                Production SEO &amp; OpenGraph Metadata
+              </h3>
+              <p className="text-xs text-zinc-500 dark:text-zinc-400 mt-0.5">
+                Dynamic overrides for Google Search snippets, Open Graph previews, and Twitter Cards.
+              </p>
+            </div>
+          </div>
+
+          <div className="space-y-4 pt-1">
+            <div>
+              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">
+                Custom SEO Title (Browser Tab &amp; Google Result)
+              </label>
+              <input
+                type="text"
+                name="seoTitle"
+                defaultValue={profile?.seoTitle || ""}
+                placeholder="Muhammad Hassan — Senior Frontend & Full-Stack Engineer | React & Next.js Architect"
+                className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/60 px-4 py-2.5 text-sm text-zinc-900 dark:text-zinc-200 outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20 font-mono text-xs"
+              />
+              <p className="mt-1 text-[11px] text-zinc-500">
+                Leave blank to automatically use the default high-ranking resume headline.
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">
+                Meta Description (Search Snippet &amp; Social Previews)
+              </label>
+              <textarea
+                name="seoDescription"
+                rows={3}
+                defaultValue={profile?.seoDescription || ""}
+                placeholder="Senior Frontend & Full-Stack Engineer with 6+ years of experience architecting scalable, sub-second web applications in React.js, Next.js, TypeScript, Laravel, and .NET modernizations..."
+                className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/60 px-4 py-2.5 text-sm text-zinc-900 dark:text-zinc-200 outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20 resize-y"
+              />
+              <p className="mt-1 text-[11px] text-zinc-500">
+                Optimal length: 150 - 160 characters for crisp display in search results.
+              </p>
+            </div>
+
+            <div>
+              <label className="block text-xs font-medium text-zinc-700 dark:text-zinc-400 mb-1.5">
+                Additional Comma-Separated Keywords
+              </label>
+              <input
+                type="text"
+                name="seoKeywords"
+                defaultValue={profile?.seoKeywords || ""}
+                placeholder="Next.js Architect, React Developer Islamabad, Enterprise Banking Web Apps"
+                className="w-full rounded-xl border border-zinc-300 dark:border-zinc-800 bg-white dark:bg-zinc-950/60 px-4 py-2.5 text-sm text-zinc-900 dark:text-zinc-200 outline-none focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20 font-mono text-xs"
+              />
+            </div>
+          </div>
+        </div>
+
         {/* Submit */}
         <div className="flex justify-end">
           <button

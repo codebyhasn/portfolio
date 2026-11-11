@@ -19,7 +19,7 @@ interface AdminOverviewTabProps {
   projects: Project[];
   skills: Skill[];
   messages: ContactMessage[];
-  onNavigate: (tab: "overview" | "profile" | "experience" | "projects" | "skills" | "messages") => void;
+  onNavigate: (tab: "overview" | "profile" | "experience" | "credentials" | "projects" | "skills" | "sections" | "messages") => void;
 }
 
 export function AdminOverviewTab({

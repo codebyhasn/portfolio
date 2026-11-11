@@ -44,6 +44,9 @@ export async function updateProfileAction(formData: FormData) {
     showAvatar: formData.get("showAvatar") === "true",
     animationsEnabled: formData.get("animationsEnabled") === "true",
     availableForWork: formData.get("availableForWork") === "true",
+    seoTitle: (formData.get("seoTitle") as string) || "",
+    seoDescription: (formData.get("seoDescription") as string) || "",
+    seoKeywords: (formData.get("seoKeywords") as string) || "",
   };
 
   if (avatarUrl !== undefined) {
@@ -304,4 +307,201 @@ export async function deleteMessageAction(id: number) {
   revalidatePath("/admin");
   return { success: true };
 }
+
+// ---- Nav Sections ----
+export async function toggleNavSectionAction(id: string, explicitStatus?: boolean) {
+  await requireAuth();
+  const section = await prisma.navSection.findUnique({ where: { id } });
+  if (!section) throw new Error("Section not found");
+
+  const nextStatus = explicitStatus !== undefined ? explicitStatus : !section.isActive;
+  await prisma.navSection.update({
+    where: { id },
+    data: { isActive: nextStatus },
+  });
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
+export async function updateNavSectionAction(formDataOrId: FormData | string, maybeFormData?: FormData) {
+  await requireAuth();
+  let id: string;
+  let formData: FormData;
+
+  if (typeof formDataOrId === "string" && maybeFormData) {
+    id = formDataOrId;
+    formData = maybeFormData;
+  } else if (formDataOrId instanceof FormData) {
+    formData = formDataOrId;
+    id = formData.get("id") as string;
+  } else {
+    throw new Error("Invalid parameters");
+  }
+
+  const label = formData.get("label") as string;
+  const number = formData.get("number") as string;
+  const targetId = formData.get("targetId") as string;
+  const order = parseInt(formData.get("order") as string) || 0;
+  const isActive = formData.get("isActive") === "true";
+
+  await prisma.navSection.update({
+    where: { id },
+    data: {
+      label,
+      number,
+      targetId: targetId.startsWith("#") ? targetId : `#${targetId}`,
+      order,
+      isActive,
+    },
+  });
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
+export async function createNavSectionAction(formData: FormData) {
+  await requireAuth();
+  const key = (formData.get("key") as string).toLowerCase().trim().replace(/\s+/g, "-");
+  const number = formData.get("number") as string;
+  const label = formData.get("label") as string;
+  const targetId = formData.get("targetId") as string;
+  const order = parseInt(formData.get("order") as string) || 0;
+  const isActive = formData.get("isActive") === "true";
+
+  await prisma.navSection.create({
+    data: {
+      key,
+      number,
+      label,
+      targetId: targetId.startsWith("#") ? targetId : `#${targetId}`,
+      order,
+      isActive,
+    },
+  });
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
+export async function deleteNavSectionAction(id: string) {
+  await requireAuth();
+  await prisma.navSection.delete({ where: { id } });
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
+export async function reorderNavSectionsAction(items: { id: string; order: number; number?: string }[]) {
+  await requireAuth();
+  for (const item of items) {
+    const data: { order: number; number?: string } = { order: item.order };
+    if (item.number) data.number = item.number;
+    await prisma.navSection.update({
+      where: { id: item.id },
+      data,
+    });
+  }
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
+// ---- Credentials & Education ----
+export async function createCredentialAction(formData: FormData) {
+  await requireAuth();
+  const title = formData.get("title") as string;
+  const issuer = formData.get("issuer") as string;
+  const type = (formData.get("type") as string) || "Education";
+  const period = formData.get("period") as string;
+  const description = formData.get("description") as string;
+  const url = (formData.get("url") as string) || "";
+  const order = parseInt(formData.get("order") as string) || 0;
+  const visible = formData.get("visible") !== "false";
+
+  await prisma.credential.create({
+    data: {
+      title,
+      issuer,
+      type,
+      period,
+      description,
+      url,
+      order,
+      visible,
+    },
+  });
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
+export async function updateCredentialAction(id: number, formData: FormData) {
+  await requireAuth();
+  const title = formData.get("title") as string;
+  const issuer = formData.get("issuer") as string;
+  const type = formData.get("type") as string;
+  const period = formData.get("period") as string;
+  const description = formData.get("description") as string;
+  const url = formData.get("url") as string;
+  const order = parseInt(formData.get("order") as string) || 0;
+  const visible = formData.get("visible") === "true";
+
+  await prisma.credential.update({
+    where: { id },
+    data: {
+      title,
+      issuer,
+      type,
+      period,
+      description,
+      url,
+      order,
+      visible,
+    },
+  });
+
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
+export async function deleteCredentialAction(id: number) {
+  await requireAuth();
+  await prisma.credential.delete({ where: { id } });
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
+export async function toggleCredentialVisibilityAction(id: number) {
+  await requireAuth();
+  const cred = await prisma.credential.findUnique({ where: { id } });
+  if (!cred) throw new Error("Credential not found");
+  await prisma.credential.update({
+    where: { id },
+    data: { visible: !cred.visible },
+  });
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
+export async function reorderCredentialsAction(items: { id: number; order: number }[]) {
+  await requireAuth();
+  for (const item of items) {
+    await prisma.credential.update({
+      where: { id: item.id },
+      data: { order: item.order },
+    });
+  }
+  revalidatePath("/");
+  revalidatePath("/admin");
+  return { success: true };
+}
+
 

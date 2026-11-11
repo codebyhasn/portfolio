@@ -14,6 +14,9 @@ export type Profile = {
   animationsEnabled: boolean;
   availableForWork: boolean;
   resumeUrl: string;
+  seoTitle?: string | null;
+  seoDescription?: string | null;
+  seoKeywords?: string | null;
 };
 
 export type Experience = {
@@ -68,15 +71,39 @@ export type ContactMessage = {
 
 export type SkillCategory =
   | "Frontend"
-  | "Backend"
-  | "DevOps"
+  | "Backend & CMS"
   | "Mobile"
-  | "Architecture"
-  | "State Management";
+  | "DevOps & Workflows"
+  | "Methodologies & AI"
+  | string;
+
+export type Credential = {
+  id: number;
+  title: string;
+  issuer: string;
+  type: string; // "Education" | "Certification"
+  period: string;
+  description: string;
+  url: string;
+  order: number;
+  visible: boolean;
+  createdAt: Date;
+};
 
 export type NavItem = {
   label: string;
   href: string;
+};
+
+export type NavSection = {
+  id: string;
+  key: string;
+  number: string;
+  label: string;
+  targetId: string;
+  order: number;
+  isActive: boolean;
+  updatedAt: Date;
 };
 
 export type SocialLink = {

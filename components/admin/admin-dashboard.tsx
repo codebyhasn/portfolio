@@ -7,6 +7,7 @@ import {
   LayoutDashboard,
   User,
   Briefcase,
+  GraduationCap,
   FolderOpen,
   Zap,
   MessageSquare,
@@ -15,49 +16,60 @@ import {
   Bell,
   Menu,
   X,
+  Layers,
 } from "lucide-react";
 import Link from "next/link";
 import { logoutAction } from "@/app/admin/actions/auth";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { AdminProfileTab } from "./tabs/admin-profile-tab";
 import { AdminExperienceTab } from "./tabs/admin-experience-tab";
+import { AdminCredentialsTab } from "./tabs/admin-credentials-tab";
 import { AdminProjectsTab } from "./tabs/admin-projects-tab";
 import { AdminSkillsTab } from "./tabs/admin-skills-tab";
 import { AdminMessagesTab } from "./tabs/admin-messages-tab";
 import { AdminOverviewTab } from "./tabs/admin-overview-tab";
-import type { Profile, Experience, Project, Skill, ContactMessage } from "@/lib/types";
+import { AdminSectionsTab } from "./tabs/admin-sections-tab";
+import type { Profile, Experience, Project, Skill, ContactMessage, NavSection, Credential } from "@/lib/types";
 
 type Tab =
   | "overview"
   | "profile"
   | "experience"
+  | "credentials"
   | "projects"
   | "skills"
+  | "sections"
   | "messages";
 
 interface AdminDashboardProps {
   profile: Profile | null;
   experiences: Experience[];
+  credentials: Credential[];
   projects: Project[];
   skills: Skill[];
   messages: ContactMessage[];
+  navSections: NavSection[];
 }
 
 const tabs: { id: Tab; label: string; icon: React.ReactNode }[] = [
   { id: "overview", label: "Overview", icon: <LayoutDashboard className="h-4 w-4" /> },
   { id: "profile", label: "Profile & Bio", icon: <User className="h-4 w-4" /> },
   { id: "experience", label: "Experience", icon: <Briefcase className="h-4 w-4" /> },
+  { id: "credentials", label: "Credentials", icon: <GraduationCap className="h-4 w-4" /> },
   { id: "projects", label: "Projects", icon: <FolderOpen className="h-4 w-4" /> },
   { id: "skills", label: "Skills", icon: <Zap className="h-4 w-4" /> },
+  { id: "sections", label: "Nav & Sections", icon: <Layers className="h-4 w-4" /> },
   { id: "messages", label: "Messages", icon: <MessageSquare className="h-4 w-4" /> },
 ];
 
 export function AdminDashboard({
   profile,
   experiences,
+  credentials,
   projects,
   skills,
   messages,
+  navSections,
 }: AdminDashboardProps) {
   const [activeTab, setActiveTab] = useState<Tab>("overview");
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -80,10 +92,14 @@ export function AdminDashboard({
         return <AdminProfileTab profile={profile} />;
       case "experience":
         return <AdminExperienceTab experiences={experiences} />;
+      case "credentials":
+        return <AdminCredentialsTab credentials={credentials} />;
       case "projects":
         return <AdminProjectsTab projects={projects} />;
       case "skills":
         return <AdminSkillsTab skills={skills} />;
+      case "sections":
+        return <AdminSectionsTab navSections={navSections} />;
       case "messages":
         return <AdminMessagesTab messages={messages} />;
     }

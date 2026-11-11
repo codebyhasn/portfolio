@@ -9,23 +9,42 @@ import { ThemeToggle } from "@/components/theme-toggle";
 import { WhatsAppIcon } from "@/components/icons";
 import { cleanPhoneForTel, getWhatsAppUrl } from "@/lib/utils";
 import { useAnimations } from "@/components/animation-provider";
-import type { Profile } from "@/lib/types";
+import type { Profile, NavSection } from "@/lib/types";
 
-const navItems = [
-  { index: "01", label: "Architecture", href: "#architecture" },
-  { index: "02", label: "Dossier", href: "#about" },
-  { index: "03", label: "Chronology", href: "#chronology" },
-  { index: "04", label: "Works", href: "#works" },
-  { index: "05", label: "Doctrines", href: "#doctrines" },
-  { index: "06", label: "Dispatch", href: "#dispatch" },
+const defaultNavItems = [
+  { key: "architecture", number: "01", label: "Architecture", targetId: "#architecture" },
+  { key: "dossier", number: "02", label: "Dossier", targetId: "#about" },
+  { key: "chronology", number: "03", label: "Chronology", targetId: "#chronology" },
+  { key: "credentials", number: "04", label: "Credentials", targetId: "#credentials" },
+  { key: "works", number: "05", label: "Works", targetId: "#works" },
+  { key: "doctrines", number: "06", label: "Doctrines", targetId: "#doctrines" },
+  { key: "dispatch", number: "07", label: "Dispatch", targetId: "#dispatch" },
 ];
 
-export function Navbar({ profile }: { profile?: Profile } = {}) {
+export function Navbar({
+  profile,
+  navSections,
+}: {
+  profile?: Profile;
+  navSections?: NavSection[];
+} = {}) {
   const { animationsEnabled } = useAnimations();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [localTime, setLocalTime] = useState("");
-  const [activeSection, setActiveSection] = useState<string>("architecture");
+
+  const activeNavItems = (navSections && navSections.length > 0 ? navSections : defaultNavItems).map(
+    (item, idx) => ({
+      key: item.key,
+      index: item.number || (idx + 1).toString().padStart(2, "0"),
+      label: item.label,
+      href: item.targetId.startsWith("#") ? item.targetId : `#${item.targetId}`,
+    })
+  );
+
+  const [activeSection, setActiveSection] = useState<string>(
+    activeNavItems[0]?.href.slice(1) || "architecture"
+  );
 
   // Real-time Islamabad clock
   useEffect(() => {
@@ -53,7 +72,7 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
 
   // Track active section as user scrolls
   useEffect(() => {
-    const sectionIds = navItems.map((item) => item.href.slice(1));
+    const sectionIds = activeNavItems.map((item) => item.href.slice(1));
     const handleScrollSpy = () => {
       const scrollPosition = window.scrollY + 140;
       for (let i = sectionIds.length - 1; i >= 0; i--) {
@@ -71,7 +90,7 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
     window.addEventListener("scroll", handleScrollSpy, { passive: true });
     handleScrollSpy();
     return () => window.removeEventListener("scroll", handleScrollSpy);
-  }, []);
+  }, [activeNavItems]);
 
   // Smooth scroll handler with fixed header compensation
   const handleNavClick = (
@@ -103,6 +122,13 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
       window.location.href = href;
     }
   };
+
+  const homeHref = activeNavItems[0]?.href || "#architecture";
+  const dispatchSection =
+    activeNavItems.find((it) => it.key === "dispatch") ||
+    activeNavItems[activeNavItems.length - 1];
+  const dispatchHref = dispatchSection?.href || "#dispatch";
+  const dispatchLabel = dispatchSection?.label || "Dispatch";
 
   return (
     <motion.header
@@ -171,8 +197,8 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Neutral Monochrome Brand Vector */}
         <a
-          href="#architecture"
-          onClick={(e) => handleNavClick(e, "#architecture")}
+          href={homeHref}
+          onClick={(e) => handleNavClick(e, homeHref)}
           className="flex items-center gap-3 group cursor-pointer"
         >
           <div className="relative h-8 w-8 sm:h-9 sm:w-9 flex-shrink-0 transition-transform duration-200 group-hover:scale-105 flex items-center justify-center">
@@ -198,7 +224,7 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
 
         {/* Structured Desktop Navigation with Index Prefixes */}
         <nav className="hidden md:flex items-center gap-4 lg:gap-6 font-mono text-xs">
-          {navItems.map((item) => {
+          {activeNavItems.map((item) => {
             const isActive = activeSection === item.href.slice(1);
             return (
               <a
@@ -231,11 +257,11 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
           <ThemeToggle />
 
           <a
-            href="#dispatch"
-            onClick={(e) => handleNavClick(e, "#dispatch")}
+            href={dispatchHref}
+            onClick={(e) => handleNavClick(e, dispatchHref)}
             className="hidden sm:inline-flex items-center gap-1.5 rounded-md bg-[#D9541E] hover:bg-[#bf4615] text-white px-3 py-1.5 text-xs font-mono font-medium transition-all shadow-xs cursor-pointer"
           >
-            <span>Dispatch</span>
+            <span>{dispatchLabel}</span>
             <ArrowUpRight className="h-3.5 w-3.5" />
           </a>
 
@@ -261,7 +287,7 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
             className="border-b border-[#111111]/12 dark:border-zinc-800 bg-[#f3eee3] dark:bg-[#0e0f12] px-4 py-4 md:hidden font-mono"
           >
             <div className="flex flex-col space-y-3">
-              {navItems.map((item) => {
+              {activeNavItems.map((item) => {
                 const isActive = activeSection === item.href.slice(1);
                 return (
                   <a
@@ -311,8 +337,8 @@ export function Navbar({ profile }: { profile?: Profile } = {}) {
               )}
               <div className="pt-2">
                 <a
-                  href="#dispatch"
-                  onClick={(e) => handleNavClick(e, "#dispatch")}
+                  href={dispatchHref}
+                  onClick={(e) => handleNavClick(e, dispatchHref)}
                   className="w-full flex items-center justify-center gap-2 rounded-md bg-[#D9541E] hover:bg-[#bf4615] text-white py-2 text-xs font-mono font-medium cursor-pointer"
                 >
                   <span>Initiate Contact</span>

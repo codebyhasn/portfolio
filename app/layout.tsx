@@ -3,11 +3,13 @@ import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { prisma } from "@/lib/prisma";
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#f8f7f4" },
-    { media: "(prefers-color-scheme: dark)", color: "#0d0e12" },
+    { media: "(prefers-color-scheme: light)", color: "#f3eee3" },
+    { media: "(prefers-color-scheme: dark)", color: "#0e0f12" },
   ],
 };
 
@@ -27,64 +29,130 @@ const newsreader = Newsreader({
   variable: "--font-serif",
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
-  title: "Muhammad Hassan — Senior Frontend / Full-Stack Engineer",
-  description:
-    "Senior Frontend / Full-Stack Engineer with 6+ years of experience specializing in React, Next.js, TypeScript, and Laravel. Based in Islamabad, Pakistan.",
-  keywords: [
-    "Muhammad Hassan",
-    "Senior Frontend Engineer",
-    "React Developer",
-    "Next.js",
-    "TypeScript",
-    "Full-Stack",
-    "Islamabad",
-    "codebyhasn",
-  ],
-  authors: [{ name: "Muhammad Hassan" }],
-  icons: {
-    icon: [
-      { url: "/favicon.ico?v=2", sizes: "any" },
-      { url: "/favicon-16x16.png?v=2", sizes: "16x16", type: "image/png" },
-      { url: "/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
-    ],
-    apple: [
-      { url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" },
-    ],
-    other: [
-      {
-        rel: "android-chrome-192x192",
-        url: "/android-chrome-192x192.png?v=2",
-      },
-      {
-        rel: "android-chrome-512x512",
-        url: "/android-chrome-512x512.png?v=2",
-      },
-    ],
-  },
-  manifest: "/site.webmanifest?v=2",
-  openGraph: {
-    title: "Muhammad Hassan — Senior Frontend / Full-Stack Engineer",
-    description:
-      "6+ years architecting scalable, high-performance web applications with React, Next.js and Laravel.",
-    type: "website",
-    images: [
-      {
-        url: "/brand-logo.png?v=2",
-        width: 512,
-        height: 512,
-        alt: "codebyhasn logo",
-      },
-    ],
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://codebyhasn.com";
 
-export default function RootLayout({
+  let title = "Muhammad Hassan — Senior Frontend & Full-Stack Engineer | React & Next.js Architect";
+  let description =
+    "Senior Frontend & Full-Stack Engineer with 6+ years of experience architecting scalable, sub-second web applications in React.js, Next.js, TypeScript, Laravel, and .NET modernizations. Available for senior engineering roles and technical consulting.";
+  let keywords = [
+    "Muhammad Hassan",
+    "codebyhasn",
+    "Senior Frontend Engineer",
+    "Senior React Developer",
+    "Next.js Architect",
+    "Full Stack Engineer Pakistan",
+    "React Developer Islamabad",
+    "TypeScript Developer",
+    "Laravel Full Stack Developer",
+    "Fintech Web Engineer",
+    "UI UX Engineering",
+    "Modern Web Architecture",
+    "Enterprise Banking Web Apps",
+  ];
+
+  try {
+    const profile = await prisma.profile.findFirst();
+    if (profile?.seoTitle && profile.seoTitle.trim()) {
+      title = profile.seoTitle.trim();
+    }
+    if (profile?.seoDescription && profile.seoDescription.trim()) {
+      description = profile.seoDescription.trim();
+    }
+    if (profile?.seoKeywords && profile.seoKeywords.trim()) {
+      const extra = profile.seoKeywords.split(",").map((k) => k.trim()).filter(Boolean);
+      keywords = Array.from(new Set([...keywords, ...extra]));
+    }
+  } catch {
+    // fallback to defaults
+  }
+
+  return {
+    metadataBase: new URL(baseUrl),
+    title: {
+      default: title,
+      template: "%s | Muhammad Hassan — codebyhasn",
+    },
+    description,
+    keywords,
+    authors: [{ name: "Muhammad Hassan (codebyhasn)", url: baseUrl }],
+    creator: "Muhammad Hassan (codebyhasn)",
+    publisher: "Muhammad Hassan",
+    alternates: {
+      canonical: "/",
+    },
+    icons: {
+      icon: [
+        { url: "/favicon.ico?v=2", sizes: "any" },
+        { url: "/favicon-16x16.png?v=2", sizes: "16x16", type: "image/png" },
+        { url: "/favicon-32x32.png?v=2", sizes: "32x32", type: "image/png" },
+      ],
+      apple: [
+        { url: "/apple-touch-icon.png?v=2", sizes: "180x180", type: "image/png" },
+      ],
+      other: [
+        {
+          rel: "android-chrome-192x192",
+          url: "/android-chrome-192x192.png?v=2",
+        },
+        {
+          rel: "android-chrome-512x512",
+          url: "/android-chrome-512x512.png?v=2",
+        },
+      ],
+    },
+    manifest: "/site.webmanifest?v=2",
+    openGraph: {
+      type: "profile",
+      locale: "en_US",
+      url: baseUrl,
+      title: "Muhammad Hassan — Senior Frontend & Full-Stack Engineer",
+      description:
+        "Building high-performance, accessible enterprise web apps and modern digital experiences in React, Next.js, and TypeScript.",
+      siteName: "Muhammad Hassan Portfolio — codebyhasn",
+      images: [
+        {
+          url: "/opengraph-image",
+          width: 1200,
+          height: 630,
+          alt: "Muhammad Hassan — codebyhasn Portfolio",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Muhammad Hassan — Senior Frontend & Full-Stack Engineer",
+      description:
+        "Explore technical case studies, enterprise fintech solutions, and architecture doctrines by Muhammad Hassan.",
+      creator: "@codebyhasn",
+      images: ["/opengraph-image"],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let profile = null;
+  try {
+    profile = await prisma.profile.findFirst();
+  } catch {
+    // fallback
+  }
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -93,6 +161,7 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
         <link rel="manifest" href="/site.webmanifest?v=2" />
+        <JsonLd profile={profile} />
       </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${newsreader.variable} font-sans antialiased relative`}
@@ -104,8 +173,8 @@ export default function RootLayout({
         />
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
-          enableSystem
+          defaultTheme="light"
+          enableSystem={false}
           disableTransitionOnChange={false}
         >
           {children}

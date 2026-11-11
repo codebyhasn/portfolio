@@ -22,17 +22,17 @@ const engineeringMetrics = [
 
 export function AboutSection({ profile }: AboutSectionProps) {
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-zinc-200/80 dark:border-zinc-800/80">
+    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8 border-b border-[#111111]/12 dark:border-zinc-800/80">
       <div className="mx-auto max-w-7xl">
         {/* Section Index Marker */}
-        <div className="flex items-center justify-between border-b border-zinc-200/80 dark:border-zinc-800/80 pb-3 mb-12 text-xs font-mono">
+        <div className="flex items-center justify-between border-b border-[#111111]/12 dark:border-zinc-800/80 pb-3 mb-12 text-xs font-mono">
           <div className="flex items-center gap-2">
-            <span className="text-amber-600 dark:text-amber-500 font-bold">02 //</span>
-            <span className="tracking-widest uppercase text-zinc-500 dark:text-zinc-400">
+            <span className="text-[#D9541E] dark:text-[#E05D27] font-bold">02 //</span>
+            <span className="tracking-widest uppercase text-[#555555] dark:text-zinc-400">
               ARCHITECTURAL DOSSIER &amp; CORE PRINCIPLES
             </span>
           </div>
-          <span className="hidden sm:inline font-mono text-[11px] text-zinc-400 dark:text-zinc-500">
+          <span className="hidden sm:inline font-mono text-[11px] text-[#555555]/70 dark:text-zinc-500">
             SPECIFICATION SHEET
           </span>
         </div>
@@ -42,30 +42,30 @@ export function AboutSection({ profile }: AboutSectionProps) {
           {/* Left Column: Manifesto & Metrics Ledger */}
           <div className="lg:col-span-5 flex flex-col space-y-8">
             <div className="space-y-3">
-              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight text-zinc-950 dark:text-zinc-50 leading-[1.08]">
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl tracking-tight text-[#111111] dark:text-zinc-50 leading-[1.08]">
                 Software designed to outlast the sprint cycle.
               </h2>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed font-sans pt-2">
-                I approach frontend engineering not merely as styling mockups, but as constructing high-reliability interfaces for systems where failure is expensive. From sub-second financial dashboards to enterprise design systems, my focus centers on code readability, deterministic data flow, and uncompromising performance.
+              <p className="text-sm text-[#555555] dark:text-zinc-300 leading-relaxed font-sans pt-2">
+                {profile.bio || "Senior Frontend / Full-Stack Engineer with 6+ years of experience architecting scalable, high-performance web applications, specializing primarily in React and Next.js, alongside full-cycle development in Laravel (PHP), WordPress and UI-focused modernizations in .NET. Adept across the complete software development lifecycle, translating complex product requirements into robust, pixel-perfect, and accessible user interfaces with optimized render speeds. Actively accelerates delivery velocity, test coverage, and code maintainability by leveraging modern AI-assisted development workflows."}
               </p>
             </div>
 
             {/* Engineering Metrics Ledger */}
-            <div className="border-t border-zinc-200/80 dark:border-zinc-800/80 pt-6 space-y-4">
-              <p className="font-mono text-xs uppercase tracking-wider text-amber-600 dark:text-amber-500 font-semibold">
+            <div className="border-t border-[#111111]/12 dark:border-zinc-800/80 pt-6 space-y-4">
+              <p className="font-mono text-xs uppercase tracking-wider text-[#D9541E] dark:text-[#E05D27] font-semibold">
                 [ PRODUCTION VERIFICATIONS ]
               </p>
               <div className="space-y-4">
                 {engineeringMetrics.map((metric, i) => (
                   <div
                     key={metric.label}
-                    className="flex flex-col py-2 border-b border-zinc-200/50 dark:border-zinc-800/50"
+                    className="flex flex-col py-2 border-b border-[#111111]/10 dark:border-zinc-800/50"
                   >
                     <div className="flex items-baseline justify-between font-mono text-xs">
-                      <span className="text-zinc-500 dark:text-zinc-400">0{i + 1} / {metric.label}</span>
-                      <span className="font-bold text-zinc-900 dark:text-zinc-100">{metric.value}</span>
+                      <span className="text-[#555555] dark:text-zinc-400">0{i + 1} / {metric.label}</span>
+                      <span className="font-bold text-[#111111] dark:text-zinc-100">{metric.value}</span>
                     </div>
-                    <p className="text-[11px] text-zinc-500 dark:text-zinc-400 font-sans mt-0.5">
+                    <p className="text-[11px] text-[#555555] dark:text-zinc-400 font-sans mt-0.5">
                       {metric.note}
                     </p>
                   </div>
@@ -74,26 +74,26 @@ export function AboutSection({ profile }: AboutSectionProps) {
             </div>
 
             {/* Direct Coordinates */}
-            <div className="pt-2 font-mono text-xs text-zinc-500 dark:text-zinc-400 space-y-2.5 border-t border-zinc-200/80 dark:border-zinc-800/80">
+            <div className="pt-2 font-mono text-xs text-[#555555] dark:text-zinc-400 space-y-2.5 border-t border-[#111111]/12 dark:border-zinc-800/80">
               <p className="flex items-center gap-2">
-                <span className="text-zinc-400 uppercase text-[10px]">Location:</span>
-                <span className="text-zinc-800 dark:text-zinc-200 font-medium">{profile.location}</span>
+                <span className="text-[#555555]/70 uppercase text-[10px]">Location:</span>
+                <span className="text-[#111111] dark:text-zinc-200 font-medium">{profile.location}</span>
               </p>
               <p className="flex items-center gap-2">
-                <span className="text-zinc-400 uppercase text-[10px]">Direct:</span>
+                <span className="text-[#555555]/70 uppercase text-[10px]">Direct:</span>
                 <a
                   href={`mailto:${profile.email}`}
-                  className="text-zinc-800 dark:text-zinc-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors font-medium underline underline-offset-4"
+                  className="text-[#111111] dark:text-zinc-200 hover:text-[#D9541E] dark:hover:text-[#E05D27] transition-colors font-medium underline underline-offset-4"
                 >
                   {profile.email}
                 </a>
               </p>
               {Boolean(profile.phone && profile.phone.trim()) && (
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-zinc-400 uppercase text-[10px]">Mobile:</span>
+                  <span className="text-[#555555]/70 uppercase text-[10px]">Mobile:</span>
                   <a
                     href={`tel:${cleanPhoneForTel(profile.phone)}`}
-                    className="text-zinc-800 dark:text-zinc-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors font-medium underline underline-offset-4"
+                    className="text-[#111111] dark:text-zinc-200 hover:text-[#D9541E] dark:hover:text-[#E05D27] transition-colors font-medium underline underline-offset-4"
                     title={`Direct Call: ${profile.phone}`}
                   >
                     {profile.phone}
@@ -102,7 +102,7 @@ export function AboutSection({ profile }: AboutSectionProps) {
                     href={getWhatsAppUrl(profile.phone)}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[10px] text-zinc-700 dark:text-zinc-300 bg-zinc-100 dark:bg-zinc-800/80 hover:bg-zinc-200 dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 px-2 py-0.5 rounded border border-zinc-200 dark:border-zinc-700/80 transition-colors font-medium"
+                    className="inline-flex items-center gap-1 text-[10px] text-[#111111] dark:text-zinc-300 bg-[#ebe5d8]/70 dark:bg-zinc-800/80 hover:bg-[#ebe5d8] dark:hover:bg-zinc-700 hover:text-zinc-950 dark:hover:text-zinc-100 px-2 py-0.5 rounded border border-[#111111]/10 dark:border-zinc-700/80 transition-colors font-medium"
                     title="Direct WhatsApp Message"
                   >
                     <WhatsAppIcon className="h-3 w-3" />

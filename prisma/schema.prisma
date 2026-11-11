@@ -26,6 +26,9 @@ model Profile {
   animationsEnabled  Boolean @default(true)
   availableForWork   Boolean @default(true)
   resumeUrl          String  @default("/resume.pdf")
+  seoTitle           String? @default("")
+  seoDescription     String? @default("")
+  seoKeywords        String? @default("")
 }
 
 model Experience {
@@ -76,5 +79,29 @@ model ContactMessage {
   message   String
   read      Boolean  @default(false)
   createdAt DateTime @default(now())
+}
+
+model NavSection {
+  id        String   @id @default(cuid())
+  key       String   @unique // e.g., "architecture", "dossier", "chronology", "works", "doctrines", "dispatch"
+  number    String   // e.g., "01", "02", "03" (auto-formatted or editable)
+  label     String   // e.g., "Architecture", "Dossier", "Chronology", "Works", "Doctrines", "Dispatch"
+  targetId  String   // HTML section anchor id: e.g., "#architecture", "#works"
+  order     Int      @default(0)
+  isActive  Boolean  @default(true)
+  updatedAt DateTime @updatedAt
+}
+
+model Credential {
+  id          Int      @id @default(autoincrement())
+  title       String
+  issuer      String
+  type        String   // "Education" | "Certification"
+  period      String
+  description String
+  url         String   @default("")
+  order       Int      @default(0)
+  visible     Boolean  @default(true)
+  createdAt   DateTime @default(now())
 }
 
