@@ -1,26 +1,37 @@
 {
   "name": "Muhammad Hassan — Senior Frontend & Full-Stack Engineer",
   "short_name": "codebyhasn",
-  "description": "Portfolio and engineering doctrines of Muhammad Hassan, Senior Frontend and Full-Stack Engineer specializing in React, Next.js, and modern web architectures.",
+  "description": "Portfolio and technical showcase of Muhammad Hassan (codebyhasn) — Senior React & Next.js Engineer.",
   "start_url": "/",
+  "scope": "/",
+  "id": "/",
   "display": "standalone",
+  "orientation": "portrait-primary",
   "background_color": "#f3eee3",
   "theme_color": "#f3eee3",
   "icons": [
     {
-      "src": "/brand/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png"
+      "src": "/favicon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
     },
     {
-      "src": "/brand/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    },
-    {
-      "src": "/brand/logo.svg",
+      "src": "/icon.svg",
       "sizes": "any",
-      "type": "image/svg+xml"
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable any"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable any"
     }
   ]
 }

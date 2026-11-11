@@ -57,10 +57,12 @@ An editorial, high-performance developer portfolio and integrated Content Manage
 ## 🚀 Quick Start Guide
 
 ### 1. Prerequisites
+
 - Node.js 18.18+ or 20+
 - npm, yarn, or pnpm
 
 ### 2. Installation
+
 ```bash
 git clone https://github.com/codebyhasn/portfolio.git
 cd portfolio
@@ -68,11 +70,12 @@ npm install
 ```
 
 ### 3. Environment Variables
+
 Create a `.env.local` file in the root directory:
 
 ```env
 # Application Base URL (No trailing slash)
-NEXT_PUBLIC_SITE_URL=https://codebyhasn.com
+NEXT_PUBLIC_SITE_URL=https://codebyhasn.site
 
 # Admin Authentication
 ADMIN_SECRET_KEY=your_secure_random_hash_here
@@ -83,15 +86,18 @@ DATABASE_URL="file:./dev.db"
 ```
 
 ### 4. Database Initialization & Seeding
+
 ```bash
 npx prisma migrate dev --name init
 npx prisma db seed
 ```
 
 ### 5. Start Development Server
+
 ```bash
 npm run dev
 ```
+
 Open [http://localhost:3000](http://localhost:3000) to inspect the public portfolio, or navigate to [http://localhost:3000/admin](http://localhost:3000/admin) to manage content.
 
 ---
@@ -99,6 +105,7 @@ Open [http://localhost:3000](http://localhost:3000) to inspect the public portfo
 ## 🔒 Administrative Controls (`/admin`)
 
 The integrated administrative system supports direct mutation without code redeployment:
+
 - **Navigation & Sections:** Rename tab indices or deactivate sections. Inactivating any item removes its navbar anchor and removes its section from DOM rendering cleanly.
 - **Projects & Works:** Add case studies, upload imagery, flag featured highlights, and update live deployment links.
 - **Visuals & Motion:** Toggle site-wide animations for low-power devices and toggle avatar display states.
@@ -108,6 +115,7 @@ The integrated administrative system supports direct mutation without code redep
 ## 🚢 Deployment
 
 Optimized for instant deployment to Vercel, Railway, or VPS environments:
+
 ```bash
 npm run build
 npm run start

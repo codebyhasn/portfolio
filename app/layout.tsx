@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "sonner";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { prisma } from "@/lib/prisma";
+import { cache } from "react";
 
 export const viewport: Viewport = {
   themeColor: [
@@ -29,8 +30,18 @@ const newsreader = Newsreader({
   variable: "--font-serif",
 });
 
+// React cache prevents duplicate Prisma queries between generateMetadata and RootLayout
+const getProfile = cache(async () => {
+  try {
+    return await prisma.profile.findFirst();
+  } catch {
+    return null;
+  }
+});
+
 export async function generateMetadata(): Promise<Metadata> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://codebyhasn.com";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://codebyhasn.site";
+  const profile = await getProfile();
 
   let title = "Muhammad Hassan — Senior Frontend & Full-Stack Engineer | React & Next.js Architect";
   let description =
@@ -51,20 +62,18 @@ export async function generateMetadata(): Promise<Metadata> {
     "Enterprise Banking Web Apps",
   ];
 
-  try {
-    const profile = await prisma.profile.findFirst();
-    if (profile?.seoTitle && profile.seoTitle.trim()) {
-      title = profile.seoTitle.trim();
-    }
-    if (profile?.seoDescription && profile.seoDescription.trim()) {
-      description = profile.seoDescription.trim();
-    }
-    if (profile?.seoKeywords && profile.seoKeywords.trim()) {
-      const extra = profile.seoKeywords.split(",").map((k) => k.trim()).filter(Boolean);
-      keywords = Array.from(new Set([...keywords, ...extra]));
-    }
-  } catch {
-    // fallback to defaults
+  if (profile?.seoTitle && profile.seoTitle.trim()) {
+    title = profile.seoTitle.trim();
+  }
+  if (profile?.seoDescription && profile.seoDescription.trim()) {
+    description = profile.seoDescription.trim();
+  }
+  if (profile?.seoKeywords && profile.seoKeywords.trim()) {
+    const extra = profile.seoKeywords
+      .split(",")
+      .map((k: string) => k.trim())
+      .filter(Boolean);
+    keywords = Array.from(new Set([...keywords, ...extra]));
   }
 
   return {
@@ -146,26 +155,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let profile = null;
-  try {
-    profile = await prisma.profile.findFirst();
-  } catch {
-    // fallback
-  }
+  const profile = await getProfile();
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="icon" href="/favicon.ico?v=2" sizes="any" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png?v=2" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png?v=2" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2" />
-        <link rel="manifest" href="/site.webmanifest?v=2" />
-        <JsonLd profile={profile} />
-      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} ${newsreader.variable} font-sans antialiased relative`}
       >
+        <JsonLd profile={profile} />
         {/* Subtle noise grain texture overlay to remove sterile digital sheen */}
         <div
           aria-hidden="true"

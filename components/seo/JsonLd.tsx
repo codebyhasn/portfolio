@@ -1,89 +1,97 @@
-import type { Profile } from "@/lib/types";
+import React from 'react';
 
 interface JsonLdProps {
-  profile?: Profile | null;
+  profile?: {
+    name?: string | null;
+    title?: string | null;
+    bio?: string | null;
+    email?: string | null;
+    phone?: string | null;
+    avatarUrl?: string | null;
+    githubUrl?: string | null;
+    linkedinUrl?: string | null;
+  } | null;
 }
 
-export function JsonLd({ profile }: JsonLdProps = {}) {
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://codebyhasn.com";
-  const name = profile?.name || "Muhammad Hassan";
-  const email = profile?.email || "codebyhasn@gmail.com";
-  const headline = profile?.headline || "Senior Frontend / Full-Stack Engineer";
-  const location = profile?.location || "Islamabad, Pakistan";
-  const github = profile?.github || "https://github.com/codebyhasn";
-  const linkedIn = profile?.linkedIn || "https://linkedin.com/in/codebyhasn";
+export function JsonLd({ profile }: JsonLdProps) {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://codebyhasn.site';
 
   const personSchema = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: name,
-    alternateName: "codebyhasn",
-    jobTitle: headline,
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: profile?.name || 'Muhammad Hassan',
+    alternateName: 'codebyhasn',
+    jobTitle: profile?.title || 'Senior Frontend / Full-Stack Engineer',
     url: siteUrl,
-    image: `${siteUrl}/assets/avatar.jpg`,
-    email: email,
-    telephone: profile?.phone || "+92 (333) 271 3381",
+    image: profile?.avatarUrl || `${siteUrl}/brand/avatar.jpg`,
+    email: profile?.email || 'codebyhasn@gmail.com',
+    telephone: profile?.phone || '+923332713381',
     address: {
-      "@type": "PostalAddress",
-      addressLocality: location.split(",")[0]?.trim() || "Islamabad",
-      addressCountry: "PK",
+      '@type': 'PostalAddress',
+      addressLocality: 'Islamabad',
+      addressCountry: 'PK',
     },
-    sameAs: [github, linkedIn].filter(Boolean),
+    sameAs: [
+      profile?.githubUrl || 'https://github.com/codebyhasn',
+      profile?.linkedinUrl || 'https://linkedin.com/in/codebyhasn',
+    ],
     alumniOf: {
-      "@type": "EducationalOrganization",
-      name: "COMSATS University Islamabad, Wah Campus",
-      sameAs: "https://www.comsats.edu.pk/",
+      '@type': 'EducationalOrganization',
+      name: 'COMSATS University Islamabad, Wah Campus',
+      sameAs: 'https://www.comsats.edu.pk/',
     },
     knowsAbout: [
-      "React.js",
-      "Next.js",
-      "TypeScript",
-      "JavaScript (ES6+)",
-      "Redux Toolkit",
-      "Context API",
-      "Laravel",
-      "PHP",
-      ".NET MVC",
-      "WordPress",
-      "RESTful APIs",
-      "GraphQL",
-      "React Native",
-      "Tailwind CSS",
-      "Bootstrap",
-      "PrimeReact",
-      "MUI",
-      "Core Web Vitals",
-      "Enterprise Web Architecture",
-      "AI-assisted development workflows",
+      'React.js',
+      'Next.js',
+      'TypeScript',
+      'JavaScript (ES6+)',
+      'Laravel (PHP)',
+      '.NET MVC UI Modernization',
+      'Tailwind CSS',
+      'Redux Toolkit',
+      'Context API',
+      'RESTful APIs',
+      'GraphQL',
+      'React Native',
+      'UI/UX Engineering',
+      'Bootstrap',
+      'MUI',
+      'PrimeReact',
+      'WordPress',
+      'Core Web Vitals Optimization',
+      'Enterprise Web Architecture',
+      'AI-assisted development workflows',
     ],
   };
 
   const webSiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Muhammad Hassan Portfolio — codebyhasn",
-    alternateName: "codebyhasn",
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Muhammad Hassan Portfolio — codebyhasn',
     url: siteUrl,
-    description:
-      profile?.seoDescription ||
-      profile?.bio ||
-      "Senior Frontend & Full-Stack Engineer with 6+ years of experience architecting scalable, sub-second web applications in React.js, Next.js, TypeScript, Laravel, and .NET modernizations.",
-    inLanguage: "en-US",
     author: {
-      "@type": "Person",
-      name: name,
+      '@type': 'Person',
+      name: 'Muhammad Hassan',
     },
+    description:
+      profile?.bio ||
+      'Official portfolio and technical showcase of Senior Frontend Engineer Muhammad Hassan.',
+    inLanguage: 'en-US',
   };
+
+  // Safe serialization preventing script-injection breakage
+  const safeJsonStringify = (data: object) =>
+    JSON.stringify(data).replace(/</g, '\\u003c');
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonStringify(personSchema) }}
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+        dangerouslySetInnerHTML={{ __html: safeJsonStringify(webSiteSchema) }}
       />
     </>
   );

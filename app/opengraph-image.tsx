@@ -196,7 +196,7 @@ export default async function Image() {
           }}
         >
           <div style={{ display: "flex", alignItems: "center", gap: "20px" }}>
-            <span style={{ color: "#111111", fontWeight: 700 }}>codebyhasn.com</span>
+            <span style={{ color: "#111111", fontWeight: 700 }}>codebyhasn.site</span>
             <span>•</span>
             <span>{location}</span>
           </div>

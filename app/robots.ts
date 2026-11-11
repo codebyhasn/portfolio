@@ -1,6 +1,6 @@
-import { MetadataRoute } from 'next';
+import type { MetadataRoute } from 'next';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://codebyhasn.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://codebyhasn.site';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -10,16 +10,22 @@ export default function robots(): MetadataRoute.Robots {
         allow: '/',
         disallow: [
           '/admin',
-          '/admin/*',
-          '/api/admin/*',
-          '/_next/*',
-          '/private/*',
+          '/admin/',
+          '/api/admin',
+          '/api/admin/',
+          '/private/',
         ],
       },
       {
-        userAgent: 'GPTBot',
+        userAgent: ['GPTBot', 'ClaudeBot', 'PerplexityBot'],
         allow: '/',
-        disallow: ['/admin/*', '/api/admin/*'],
+        disallow: [
+          '/admin',
+          '/admin/',
+          '/api/admin',
+          '/api/admin/',
+          '/private/',
+        ],
       },
     ],
     sitemap: `${BASE_URL}/sitemap.xml`,
